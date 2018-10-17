@@ -19,10 +19,9 @@ public class PlayerCharacter extends Character {
 	
 	
 	
-	public void calculateExperience() {
-		
-		
-		this.setExperience(experience);
+	public void calculateLevel() {
+		int level = (int) Math.log(this.experience);
+		this.setLevel(level);
 	}
 	
 	

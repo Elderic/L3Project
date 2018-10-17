@@ -8,8 +8,8 @@ package game;
  *
  */
 public class Map {
-	private int height;
-	private int width;
+	private int height; // |
+	private int width; // --
 	
 	
 	/**
