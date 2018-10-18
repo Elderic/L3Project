@@ -1,5 +1,8 @@
-//rappel makefile: la commande make generera l'executable main. si vous modifiez un des fichiers, 
-//tapez make clean, puis make pour regenerer l'executable
+/*rappel makefile: la commande make generera l'executable main. si vous modifiez un des fichiers, 
+tapez make clean, puis make pour regenerer l'executable
+le chemin -I/usr/include/postgresql du makefile sera peut etre a modifié pour vous, il indique le chemin vers le repertoire
+contenant les fichiers .h pour postgresql
+*/
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
