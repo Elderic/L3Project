@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import core.GameVariableRepository;
+
 public class SigningInUpQuery {
 	
 	public static boolean signingInUpQuery(String typeQuery,String login,String password) throws IOException, InterruptedException {
@@ -42,7 +44,10 @@ public class SigningInUpQuery {
             	System.out.println("login not received");
             }
             if(chaine.equals("signing in ok")){
-                System.out.println("signing in ok");               
+                System.out.println("signing in ok");    
+                chaine = flux_entree.readLine () ;
+                System.out.println(chaine);   
+                GameVariableRepository.getInstance().setPlayerId(chaine);
                 closeConnection(flux_sortie,flux_entree,socket);
                 return true;
             }
@@ -66,7 +71,10 @@ public class SigningInUpQuery {
              	System.out.println("login not received");
              }
              if(chaine.equals("signing up ok")){
-                 System.out.println("signing up ok");               
+                 System.out.println("signing up ok");   
+                 chaine = flux_entree.readLine () ;
+                 System.out.println(chaine);   
+                 GameVariableRepository.getInstance().setPlayerId(chaine);
                  closeConnection(flux_sortie,flux_entree,socket);
                  return true;
              }
@@ -79,6 +87,50 @@ public class SigningInUpQuery {
         else{
         	closeConnection(flux_sortie,flux_entree,socket);
             return false;
+        }
+	}
+	public static boolean characterCreation(String playerId,String gender,String name) throws IOException, InterruptedException{
+		Socket socket = null ;
+		PrintWriter flux_sortie = null ;
+		BufferedReader flux_entree = null ;
+		String chaine ;
+		
+		try {
+			// deuxieme argument : le numero de port que l'on contacte
+			//socket = new Socket ("192.168.1.30", 5000) ;
+			socket = new Socket ("127.0.0.1", 5000) ;
+			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
+			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
+		} 
+		catch (UnknownHostException e) {
+			System.err.println ("Hote inconnu") ;
+            return false;
+		} 
+	
+        flux_sortie.println("characterCreation");
+        chaine = flux_entree.readLine () ;
+        if(chaine.equals("ready to create")){
+        	System.out.println("ready to create");
+            flux_sortie.println(playerId);
+            Thread.sleep(1000);
+            flux_sortie.println(name);
+            Thread.sleep(1000);
+            flux_sortie.println(gender);
+            chaine = flux_entree.readLine () ;
+        }
+        else{
+        	System.out.println("fail to create");
+        	closeConnection(flux_sortie,flux_entree,socket);
+            return false;
+        }
+        if(chaine.equals("creation completed")){
+        	System.out.println("creation completed");
+        	closeConnection(flux_sortie,flux_entree,socket);
+            return true;
+        }
+        else{
+        	closeConnection(flux_sortie,flux_entree,socket);
+        	return false;
         }
 	}
 	

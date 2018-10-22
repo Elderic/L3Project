@@ -73,10 +73,9 @@ public class SigningUpPanel extends JPanel {
 					System.out.println("password ok");
 					try {
 						status=SigningInUpQuery.signingInUpQuery("signingUp",loginField.getText(),password1);
-						if(status){
-							//afficher ecran suivant, la connexion est succesful
+						if(status){						
 							System.out.println("acces a l'ecran suivant");
-							//PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+							PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 						}
 						else{ //connexion impossible
 				//on ne prend pas encore en compte la raison de la non inscription(login deja pris, mdp pas au bon format etc)

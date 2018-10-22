@@ -6,17 +6,18 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.swing.JTextField;
 import gui.GTParameters;
+import query.FightQuery;
 import query.SigningInUpQuery;
-
 import javax.swing.JButton;
+import core.GameVariableRepository;
 import java.awt.Color;
 import java.awt.Dimension;
 
 public class SigningInPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private JTextField loginField;
 	private JPasswordField passwordField;
 
@@ -29,6 +30,8 @@ public class SigningInPanel extends JPanel {
 	JButton buttonConnexion;
 	JButton buttonPrevious;
 	boolean status=false;
+	boolean fightQuery=false;
+
 	/**
 	 * Create the panel.
 	 */
@@ -59,7 +62,17 @@ public class SigningInPanel extends JPanel {
 				try {
 					status=SigningInUpQuery.signingInUpQuery("signingIn",loginField.getText(),password);
 					if(status){
-						//afficher ecran suivant, la connexion est succesful
+						try {
+							fightQuery=FightQuery.FightQuery("fightSolo");
+							System.out.println("query ="+fightQuery);
+							System.out.println(GameVariableRepository.getInstance().getPlayerName());
+						} catch (IOException | InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}		
+						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 						System.out.println("acces a l'ecran suivant");
 					}
 					else{ //connexion impossible

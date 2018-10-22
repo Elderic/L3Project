@@ -1,18 +1,16 @@
 package panels;
-
+import gui.GTParameters;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import gui.GTParameters;
-import java.io.IOException;
 
 public class MainScreenPanel extends JPanel {
 	
@@ -20,7 +18,10 @@ public class MainScreenPanel extends JPanel {
 	private JLabel lblRpg;
 	private JButton signIn;
 	private JButton signUp;
+	private JButton fight;
 	private JButton leaveButton;
+	boolean fightQuery=false;
+	
 	
 	public MainScreenPanel () throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		int windowWidth = GTParameters.WINDOW_WIDTH;
@@ -40,6 +41,8 @@ public class MainScreenPanel extends JPanel {
 		signIn.addActionListener(new SignInAction());
 		signUp.addActionListener(new SignUpAction());
 		leaveButton.addActionListener(new LeaveButtonAction() );
+		fight.addActionListener(new FightAction() );
+
 	}
 	
 	private class SignInAction implements ActionListener{	
@@ -53,6 +56,17 @@ public class MainScreenPanel extends JPanel {
 			PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 			PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 
+		}
+	}
+	private class FightAction implements ActionListener{	
+		public void actionPerformed(ActionEvent e) {
+					
+				PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+				PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+				PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+				PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+
+			
 		}
 	}
 	
@@ -81,6 +95,10 @@ public class MainScreenPanel extends JPanel {
 		leaveButton = new JButton("Quit");
 		leaveButton.setBounds(445, 268, 192, 50);
 		add(leaveButton);
+		
+		fight = new JButton("temp fight panel");
+		fight.setBounds(445, 340, 192, 50);
+		add(fight);
 	}
 	
 	

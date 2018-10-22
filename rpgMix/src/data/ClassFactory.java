@@ -18,6 +18,8 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import panels.CharacterCreationPanel;
+import panels.FightPanel;
 import panels.SigningUpPanel;
 import panels.SigningInPanel;
 import panels.MainScreenPanel;
@@ -100,6 +102,10 @@ public class ClassFactory {
 			return new SigningInPanel();
 		case "SigningUpPanel":
 			return new SigningUpPanel();
+		case "CharacterCreationPanel":
+			return new CharacterCreationPanel();
+		case "FightPanel":
+			return new FightPanel();
 		case "PanelsContainer":
 			return PanelsContainer.getInstance();
 		

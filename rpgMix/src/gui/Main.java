@@ -1,21 +1,18 @@
 package gui;
-
 import java.awt.Color;
 import java.io.IOException;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
-import core.VariableRepository;
-
-import data.ClassFactory;
-import panels.SigningUpPanel;
-
-import panels.SigningInPanel;
+import panels.CharacterCreationPanel;
+import panels.FightPanel;
 import panels.MainScreenPanel;
 import panels.PanelsContainer;
+import panels.SigningInPanel;
+import panels.SigningUpPanel;
+import core.VariableRepository;
+import data.ClassFactory;
 
 public class Main extends JFrame {
 
@@ -24,9 +21,9 @@ public class Main extends JFrame {
 	private MainScreenPanel mainScreenPanel;
 	private SigningInPanel signingInPanel;
 	private SigningUpPanel signingUpPanel;
+	private FightPanel fightPanel;
+	 private CharacterCreationPanel characterCreationPanel;
 	
-	//to modify
-
 
 	public Main() throws IllegalArgumentException, InterruptedException, LineUnavailableException, UnsupportedAudioFileException {
 		super("RPG");
@@ -35,9 +32,10 @@ public class Main extends JFrame {
 			mainScreenPanel = (MainScreenPanel) ClassFactory.createPanel("MainScreenPanel");
 			signingInPanel = (SigningInPanel) ClassFactory.createPanel("SigningInPanel");
 			signingUpPanel = (SigningUpPanel) ClassFactory.createPanel("SigningUpPanel");
+			characterCreationPanel = (CharacterCreationPanel) ClassFactory.createPanel("CharacterCreationPanel");
+			fightPanel = (FightPanel) ClassFactory.createPanel("FightPanel");
 
 
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,8 +44,9 @@ public class Main extends JFrame {
 		panelsContainer.addPanel(mainScreenPanel);
 		panelsContainer.addPanel(signingInPanel);
 		panelsContainer.addPanel(signingUpPanel);
-	
-		
+		panelsContainer.addPanel(characterCreationPanel);		
+		panelsContainer.addPanel(fightPanel);
+
 		VariableRepository.getInstance();
 		initLayout();	
 	}

@@ -1,18 +1,15 @@
-/*rappel makefile: la commande make generera l'executable main. si vous modifiez un des fichiers, 
-tapez make clean, puis make pour regenerer l'executable
-le chemin -I/usr/include/postgresql du makefile sera peut etre a modifié pour vous, il indique le chemin vers le repertoire
-contenant les fichiers .h pour postgresql
-*/
+//rappel makefile: la commande make generera l'executable main. si vous modifiez un des fichiers, 
+//tapez make clean, puis make pour regenerer l'executable
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
 #include <stdio.h>
-#include<stdlib.h>
-#include<libpq-fe.h>
+#include <stdlib.h>
+#include <libpq-fe.h>
 #include <unistd.h>
 #include <time.h>
-#include"proto.h"
+#include "proto.h"
 char buf [80] ;
 
 int main () {
@@ -40,7 +37,11 @@ int main () {
 			if (strcmp (buf, "signingIn\n")==0 )			//if the client wants to sign in
 				signInChecking(s_dial);
 			else if (strcmp (buf, "signingUp\n")==0 )			//if the client wants to sign up
-				signUpChecking(s_dial);		
+				signUpChecking(s_dial);	
+			else if (strcmp (buf, "fightSolo\n")==0 )			//if the client is fighting solo
+				fightSoloChecking(s_dial);	
+			else if (strcmp (buf, "characterCreation\n")==0 )			//if the client is fighting in multiplayers
+				characterCreationChecking(s_dial);		
 			else{
 				printf("fail, unknown query %s \n",buf);
 			}
