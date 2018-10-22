@@ -22,6 +22,7 @@ public class Map {
 	}
 
 
+	
 	/**
 	 * @return the height
 	 */

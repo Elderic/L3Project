@@ -7,16 +7,15 @@ package game;
  * @author GILLES Anne-Sophie
  *
  */
-public class InteractionOnWorldMapHandler {
+public class Movements {
 	private int currentPlayerPositionX; //width
 	private int currentPlayerPositionY; //height
 	private int monsterPercentage;
 	
 	
-	public InteractionOnWorldMapHandler(int monsterPercentage) {
+	public Movements(int monsterPercentage) {
 		this.setMonsterPercentage(monsterPercentage);
 	}
-	
 	
 	public void movement(char letter) {
 		switch(letter) {
@@ -64,7 +63,6 @@ public class InteractionOnWorldMapHandler {
 		int current = this.getCurentPlayerPositionX();
 		this.setCurentPlayerPositionX(current-1);
 	}
-	
 	
 	
 	/**

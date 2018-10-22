@@ -3,8 +3,6 @@
  */
 package game;
 
-import java.util.Arrays;
-
 /**
  * @author GILLES Anne-Sophie
  *
@@ -14,8 +12,6 @@ public class Stuff {
 	private String type;
 	private String rarity;
 	private String description;
-	private Skill skills[];
-	private int weight;
 	
 	
 	
@@ -49,20 +45,6 @@ public class Stuff {
 	}
 	
 	/**
-	 * @return the skills
-	 */
-	public Skill[] getSkills() {
-		return skills;
-	}
-	
-	/**
-	 * @return the weight
-	 */
-	public int getWeight() {
-		return weight;
-	}
-	
-	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
@@ -89,28 +71,13 @@ public class Stuff {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	/**
-	 * @param skills the skills to set
-	 */
-	public void setSkills(Skill[] skills) {
-		this.skills = skills;
-	}
-	
-	/**
-	 * @param weight the weight to set
-	 */
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	
+
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Stuff [name=" + name + ", type=" + type + ", rarity=" + rarity + ", description=" + description
-				+ ", skills=" + Arrays.toString(skills) + ", weight=" + weight + "]";
+		return "Stuff [name=" + name + ", type=" + type + ", rarity=" + rarity + ", description=" + description + "]";
 	}
 }

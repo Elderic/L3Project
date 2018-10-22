@@ -7,10 +7,9 @@ package game;
  * @author GILLES Anne-Sophie
  *
  */
-public class Weapon extends Stuff {
+public class WeaponStuff extends Stuff {
 	private int damage;
 
-	
 	
 	
 	/**
