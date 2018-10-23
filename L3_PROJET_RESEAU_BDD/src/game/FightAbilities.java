@@ -13,6 +13,11 @@ public class FightAbilities {
 	
 	
 	
+	public FightAbilities(int attack, int defense) {
+		setAttack(attack);
+		setDefense(defense);
+	}
+	
 	
 	/**
 	 * @return the attack
