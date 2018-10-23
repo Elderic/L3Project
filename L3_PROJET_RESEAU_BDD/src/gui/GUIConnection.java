@@ -4,8 +4,6 @@
 package gui;
 
 import javax.swing.JFrame;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -16,6 +14,9 @@ import javax.swing.JPasswordField;
  *
  */
 public class GUIConnection extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
+	
 	private JTextField txtIdentifiant;
 	private JPasswordField pwdMotDePasse;
 	public GUIConnection() {

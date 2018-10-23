@@ -15,6 +15,9 @@ import javax.swing.JPanel;
  *
  */
 public class GUIGame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
+
 	public GUIGame() {
 		setSize(new Dimension(500, 500));
 		setResizable(false);
