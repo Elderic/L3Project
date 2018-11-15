@@ -10,9 +10,9 @@ import game.Map;
  *
  */
 public class Movements {
-	private int currentPlayerPositionX; //width
-	private int currentPlayerPositionY; //height
-	private Map map; //INITIALISER DANS CONSTRUCTEUR
+	private int currentPlayerPositionX = 5; //width A RECUP
+	private int currentPlayerPositionY = 5; //height A RECUP
+	private static Map map; //INITIALISER DANS CONSTRUCTEUR
 	
 	
 	
@@ -35,7 +35,8 @@ public class Movements {
 		}
 		
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
-			//LET'S FIGHT
+			Fight fight = new Fight();
+			fight.inFight();
 		}
 	}
 	

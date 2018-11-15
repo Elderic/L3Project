@@ -14,11 +14,12 @@ import java.awt.Dimension;
  * @author GILLES Anne-Sophie
  *
  */
-public class GUIConnection extends JFrame{
+public class GUIRegister extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	private static GUIConnection window = new GUIConnection();
+	private static GUIRegister window = new GUIRegister();
 	private JTextField txtIdentifiant;
+	private JTextField txtAdresseEmail;
 	private JPasswordField pwdMotDePasse;
 	
 	
@@ -29,43 +30,48 @@ public class GUIConnection extends JFrame{
 	 */
 	public static void main(String[] args) {
 		window.setVisible(true);
-		window.setTitle("Connexion");
+		window.setTitle("Inscription");
 	}
 	
 	
-	public GUIConnection() {
-		setSize(new Dimension(400, 300));
+	public GUIRegister() {
+		setSize(new Dimension(300, 330));
 		setPreferredSize(new Dimension(360, 300));
 		setResizable(false);
 		getContentPane().setLayout(null);
 		
-		JLabel lblVeuillezVousConnecter = new JLabel("Veuillez vous connecter \u00E0 votre compte pour jouer.");
-		lblVeuillezVousConnecter.setBounds(55, 11, 289, 14);
-		getContentPane().add(lblVeuillezVousConnecter);
+		JLabel lblInscrivezvousPourJouer = new JLabel("Inscrivez-vous pour jouer !");
+		lblInscrivezvousPourJouer.setBounds(75, 11, 167, 14);
+		getContentPane().add(lblInscrivezvousPourJouer);
 		
 		JLabel lblIdentifiant = new JLabel("Identifiant");
-		lblIdentifiant.setBounds(135, 46, 83, 14);
+		lblIdentifiant.setBounds(96, 48, 66, 14);
 		getContentPane().add(lblIdentifiant);
 		
 		txtIdentifiant = new JTextField();
-		txtIdentifiant.setBounds(135, 71, 127, 20);
+		txtIdentifiant.setBounds(93, 73, 101, 20);
 		getContentPane().add(txtIdentifiant);
 		txtIdentifiant.setColumns(10);
 		
 		JLabel lblMotDePasse = new JLabel("Mot de passe");
-		lblMotDePasse.setBounds(135, 117, 86, 14);
+		lblMotDePasse.setBounds(96, 113, 81, 14);
 		getContentPane().add(lblMotDePasse);
 		
-		JButton btnConnexion = new JButton("Connexion");
-		btnConnexion.setBounds(151, 187, 97, 23);
-		getContentPane().add(btnConnexion);
+		JButton btnValider = new JButton("Valider");
+		btnValider.setBounds(105, 261, 74, 23);
+		getContentPane().add(btnValider);
+		
+		JLabel lblAdresseEmail = new JLabel("Adresse e-mail");
+		lblAdresseEmail.setBounds(96, 186, 92, 14);
+		getContentPane().add(lblAdresseEmail);
+		
+		txtAdresseEmail = new JTextField();
+		txtAdresseEmail.setBounds(93, 211, 101, 20);
+		getContentPane().add(txtAdresseEmail);
+		txtAdresseEmail.setColumns(10);
 		
 		pwdMotDePasse = new JPasswordField();
-		pwdMotDePasse.setBounds(135, 142, 127, 20);
+		pwdMotDePasse.setBounds(96, 138, 98, 20);
 		getContentPane().add(pwdMotDePasse);
-		
-		JButton btnOuCrerUn = new JButton("ou Cr\u00E9er un compte");
-		btnOuCrerUn.setBounds(123, 237, 157, 23);
-		getContentPane().add(btnOuCrerUn);
 	}
 }

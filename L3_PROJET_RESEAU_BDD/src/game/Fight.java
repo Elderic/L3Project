@@ -14,13 +14,15 @@ public class Fight {
 	private PlayersCharacter player;
 	
 	
-	public Fight() {
+	
+	
+	public void inFight() {
 		boolean enemyIsDefending = false;	//IA A FAIRE
 		int playerHealth = 20;	//A RECUP
 		int enemyHealth = 20;	//A RECUP
-		
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
+		
 		
 		System.out.println("Début du combat !");
 		System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
@@ -85,7 +87,7 @@ public class Fight {
 		System.out.println("Combat terminé !");
 		if(enemyHealth>=0) {
 			System.out.println("Félicitation, vous avez gagné.");
-			//AJOUTER VICTOIRE + GENERER LOOT
+			//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 		}
 		else {
 			System.out.println("Dommage, vous avez perdu.");
