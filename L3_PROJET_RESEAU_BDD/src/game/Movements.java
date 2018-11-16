@@ -10,12 +10,16 @@ import game.Map;
  *
  */
 public class Movements {
-	private int currentPlayerPositionX = 5; //width A RECUP
-	private int currentPlayerPositionY = 5; //height A RECUP
-	private static Map map; //INITIALISER DANS CONSTRUCTEUR
+	private int currentPlayerPositionX; //width
+	private int currentPlayerPositionY; //height
+	private Map map; //INITIALISER DANS CONSTRUCTEUR
 	
 	
-	
+	public Movements(int width, int height, int monsterPercentage, int obstaclePercentage, int xPlayer, int yPlayer) {
+		this.map = new Map(height, width, monsterPercentage, obstaclePercentage);
+		this.currentPlayerPositionX = xPlayer;
+		this.currentPlayerPositionY = yPlayer;
+	}
 	
 	public void movement(char letter) {
 		switch(letter) {
@@ -32,51 +36,52 @@ public class Movements {
 					break;
 					
 			default: System.out.println("Error: z,q,s,d expected!");
+					break;
 		}
 		
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
-			Fight fight = new Fight();
-			fight.inFight();
+			//LET'S FIGHT
+			System.out.println("FIght Begin !!");
 		}
 	}
 	
 	private void moveUp() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
-		
-		if(map.playerCanMoveHere(currentX, currentY+1)) {
-			//Can move to this place
-			this.setCurentPlayerPositionY(currentY+1);
-		}
-	}
-	
-	private void moveDown() {
-		int currentX = this.getCurrentPlayerPositionX();
-		int currentY = this.getCurrentPlayerPositionY();
-		
+
 		if(map.playerCanMoveHere(currentX, currentY-1)) {
 			//Can move to this place
 			this.setCurentPlayerPositionY(currentY-1);
 		}
 	}
 	
+	private void moveDown() {
+		int currentX = this.getCurrentPlayerPositionX();
+		int currentY = this.getCurrentPlayerPositionY();
+
+		if(map.playerCanMoveHere(currentX, currentY+1)) {
+			//Can move to this place
+			this.setCurentPlayerPositionY(currentY+1);
+		}
+	}
+	
 	private void moveRight() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
-		
+
 		if(map.playerCanMoveHere(currentX+1, currentY)) {
 			//Can move to this place
-			this.setCurentPlayerPositionY(currentX+1);
+			this.setCurentPlayerPositionX(currentX+1);
 		}
 	}
 	
 	private void moveLeft() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
-		
+
 		if(map.playerCanMoveHere(currentX-1, currentY)) {
 			//Can move to this place
-			this.setCurentPlayerPositionY(currentX-1);
+			this.setCurentPlayerPositionX(currentX-1);
 		}
 	}
 	
@@ -96,6 +101,13 @@ public class Movements {
 	}
 	
 	/**
+	 * @return the current map attribute
+	 */
+	public Map getMap() {
+		return this.map;
+	}
+	
+	/**
 	 * @param curentPlayerPositionX the curentPlayerPositionX to set
 	 */
 	public void setCurentPlayerPositionX(int curentPlayerPositionX) {
@@ -109,6 +121,13 @@ public class Movements {
 		this.currentPlayerPositionY = curentPlayerPositionY;
 	}
 
+	/**
+	 * 
+	 * @param mapToSet the current map to set
+	 */
+	public void setMap(Map mapToSet) {
+		this.map = mapToSet;
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
