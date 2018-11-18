@@ -12,12 +12,14 @@ public class GRPGParameters {
 
 	public static final int WINDOW_HEIGHT = BASIC * 768;
 
-	public static final int SCALE = BASIC * 64;
+	public static final int SCALE = BASIC * 42;
 
 	public static final int RADIUS = BASIC * 40;
 
 	public static final int STRING_AJUSTEMENT = BASIC * 10;
 
 	public static final int POLICE_SIZE = BASIC * 30;
+	
+	public static final int STARTING_DRAW_ORIGIN = 50;
 
 }

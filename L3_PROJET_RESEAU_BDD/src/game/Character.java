@@ -8,40 +8,44 @@ package game;
  *
  */
 public class Character {
-	private String name;
-	private int health;
-	private int attack;
-	private int defense;
+	protected String name;
+	protected int health;
+	protected int attack;
+	protected int defense;
 	
-	
-	
+	public Character ( String name, int health, int attack, int defense) {
+		this.name = name;
+		this.health = health;
+		this.attack = attack;
+		this.defense = defense;
+	}
 	
 	/**
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	
 	/**
 	 * @return the health
 	 */
 	public int getHealth() {
-		return health;
+		return this.health;
 	}
 	
 	/**
 	 * @return the attack
 	 */
 	public int getAttack() {
-		return attack;
+		return this.attack;
 	}
 	
 	/**
 	 * @return the defense
 	 */
 	public int getDefense() {
-		return defense;
+		return this.defense;
 	}
 	
 	/**

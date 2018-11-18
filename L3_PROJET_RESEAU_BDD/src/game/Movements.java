@@ -3,6 +3,8 @@
  */
 package game;
 
+import core.VariableRepository;
+import data.VariableFactory;
 import game.Map;
 
 /**
@@ -14,11 +16,21 @@ public class Movements {
 	private int currentPlayerPositionY; //height
 	private Map map; //INITIALISER DANS CONSTRUCTEUR
 	
-	
+	// On va créer un joueur ici
 	public Movements(int width, int height, int monsterPercentage, int obstaclePercentage, int xPlayer, int yPlayer) {
 		this.map = new Map(height, width, monsterPercentage, obstaclePercentage);
+		
+		// PlayersCharacter (String name, int health, int attack, int defense, String variableName, int experience, String gender, PlayersStuff stuff, PlayersStatistics stats)
+		// Faudra donc mettre un query ici pour pouvoir créer le personnage suivant ce qui se trouve sur la base de données
+		// PlayersCharacter player = new PlayersCharacter("Marcross", 20, 3, 2, 0,"male",null,null);
+		PlayersCharacter player = (PlayersCharacter) VariableFactory.getInstance().createVariable("PlayersCharacter", "Marcross", 20, 3, 2);
+		VariableRepository.getInstance().register("player1", player);
 		this.currentPlayerPositionX = xPlayer;
 		this.currentPlayerPositionY = yPlayer;
+		
+		//On insère dans le stock de variables le booléen characterInFight, qui nous permettra de savoir de n'importe où si le personnage est en combat ou non
+		
+		VariableRepository.getInstance().register("characterInFight", false);
 	}
 	
 	public void movement(char letter) {
@@ -40,8 +52,19 @@ public class Movements {
 		}
 		
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
+			// System.out.println("Valeur de characterInFight avant modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
+			VariableRepository.getInstance().modify("characterInFight", true);
+			// System.out.println("Valeur de characterInFight après modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
+			
+			return;
 			//LET'S FIGHT
-			System.out.println("FIght Begin !!");
+			// System.out.println("FIght Begin !!");
+			
+			// System.out.println("Début du combat !");
+			// System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
+			
+			// Fight fight = new Fight();
+			// qsfight.inFight();
 		}
 	}
 	

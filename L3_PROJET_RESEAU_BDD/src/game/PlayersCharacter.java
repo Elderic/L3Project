@@ -15,9 +15,18 @@ public class PlayersCharacter extends Character {
 	
 	private int level;
 	
+	public PlayersCharacter (String name, int health, int attack, int defense, int experience, String gender, PlayersStuff stuff, PlayersStatistics stats) {
+		super(name, health, attack, defense);
+		this.experience = experience;
+		this.gender = gender;
+		this.stuff = stuff;
+		this.stats = stats;
+	}
 	
-	
-	
+	public PlayersCharacter (String name, int health, int attack, int defense) {
+		super(name, health, attack, defense);
+	}
+
 	public void calculateLevel() {
 		int level = (int) Math.log(this.experience);
 		this.setLevel(level);
@@ -28,35 +37,35 @@ public class PlayersCharacter extends Character {
 	 * @return the experience
 	 */
 	public int getExperience() {
-		return experience;
+		return this.experience;
 	}
 
 	/**
 	 * @return the gender
 	 */
 	public String getGender() {
-		return gender;
+		return this.gender;
 	}
 
 	/**
 	 * @return the stuff
 	 */
 	public PlayersStuff getStuff() {
-		return stuff;
+		return this.stuff;
 	}
 
 	/**
 	 * @return the stats
 	 */
 	public PlayersStatistics getStats() {
-		return stats;
+		return this.stats;
 	}
 
 	/**
 	 * @return the level
 	 */
 	public int getLevel() {
-		return level;
+		return this.level;
 	}
 
 	/**

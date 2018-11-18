@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,25 +30,43 @@ public class Painter extends JPanel {
 	final BufferedImage imageBuisson2Classic;
 	final BufferedImage imageEnemyBlob;
 	
+	static BufferedImage imageBattleBackground;
+	
 	JPanel gamePanel;
 	
 	public Painter(Movements movement) throws IOException {
 		System.out.println("Working Directory = " +
 	              System.getProperty("user.dir"));
+		
+		// System.out.println(new File("t").getCanonicalPath());
+		imageSolClassic = ImageIO.read(new File("PNG/rpgTile019.png"));
+		imageMurClassic = ImageIO.read(new File("PNG/rpgTile076.png"));
+		imageBuissonClassic = ImageIO.read(new File("PNG/rpgTile159.png"));
+		imageBuisson2Classic = ImageIO.read(new File("PNG/rpgTile157.png"));
+		imageEnemyBlob = ImageIO.read(new File("ENEMIES/MoldBrown.png"));
+		
+		imageBattleBackground = ImageIO.read(new File("PNG/battle_background.png"));
+		/*
 		imageSolClassic = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\PNG\\rpgTile019.png"));
 		imageMurClassic = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\PNG\\rpgTile076.png"));
 		imageBuissonClassic = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\PNG\\rpgTile159.png"));
 		imageBuisson2Classic = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\PNG\\rpgTile157.png"));
 		imageEnemyBlob = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\ENEMIES\\MoldBrown.png"));
-		
+		*/
 		this.movementHandler = movement;
+		
+		
 	}
 	
 	public Dimension getPreferredSize() {
         return new Dimension(GRPGParameters.WINDOW_WIDTH,GRPGParameters.WINDOW_HEIGHT);
     }
 	
-	public void drawMap (Graphics2D g) {
+	public static void drawBattleBackground(Graphics2D g) {
+		g.drawImage(imageBattleBackground, 0, 0,GRPGParameters.WINDOW_WIDTH,GRPGParameters.WINDOW_HEIGHT, null);
+	}
+	
+	public void drawMap(Graphics2D g) {
     	for (int j = 0; j < this.movementHandler.getMap().getHeight(); j++) {
     		for (int i = 0; i < this.movementHandler.getMap().getWidth(); i++) {
     			int xOffset = j*GRPGParameters.SCALE;
@@ -68,7 +87,7 @@ public class Painter extends JPanel {
 						g.drawRect(xOffset,yOffset,GTParameters.SCALE,GTParameters.SCALE);
 						*/
 						// g.drawImage(image, xOffset, yOffset, dx2, dy2, sx1, sy1, sx2, sy2, observer)
-						g.drawImage(imageSolClassic, xOffset, yOffset, null);
+						g.drawImage(imageSolClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						break;
 					case 'M':
 						/*
@@ -77,8 +96,8 @@ public class Painter extends JPanel {
 						g.setColor(Color.RED);
 						g.drawRect(xOffset,yOffset,GTParameters.SCALE,GTParameters.SCALE);
 						*/
-						g.drawImage(imageSolClassic, xOffset, yOffset, null);
-						g.drawImage(imageEnemyBlob, xOffset, yOffset, null);
+						g.drawImage(imageSolClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
+						g.drawImage(imageEnemyBlob, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						break;
 					case '*':
 						/*
@@ -90,9 +109,9 @@ public class Painter extends JPanel {
 						g.drawImage(imageSolClassic, xOffset, yOffset, null);
 						int randomBush = (int) (Math.floor(Math.random() * 2) + 1);  
 						if (randomBush == 1) {
-							g.drawImage(imageBuissonClassic, xOffset, yOffset, null);
+							g.drawImage(imageBuissonClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						} else {
-							g.drawImage(imageBuisson2Classic, xOffset, yOffset, null);
+							g.drawImage(imageBuisson2Classic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						}
 						break;
 					case '/':
@@ -102,7 +121,7 @@ public class Painter extends JPanel {
 						g.setColor(Color.GRAY);
 						g.drawRect(xOffset,yOffset,GTParameters.SCALE,GTParameters.SCALE);
 						*/
-						g.drawImage(imageMurClassic, xOffset, yOffset, null);
+						g.drawImage(imageMurClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						break;
 					default:
 						break;
@@ -113,9 +132,9 @@ public class Painter extends JPanel {
     	}
     }
 	
-	public void drawDebugGrid(Graphics g, int mapWidth, int mapHeight) {
-		int width = mapWidth;
-		int height = mapHeight;
+	public void drawDebugGrid(Graphics g, int mapWidth, int mapHeight, Component component) {
+		int width = component.getWidth();//mapWidth;
+		int height = component.getHeight();//mapHeight;
 		g.setColor(Color.GRAY);
 
 		for (int i = GRPGParameters.SCALE; i <= width; i += GRPGParameters.SCALE) {

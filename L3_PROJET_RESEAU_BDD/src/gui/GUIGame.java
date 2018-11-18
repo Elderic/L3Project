@@ -3,77 +3,114 @@
  */
 package gui;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
+import core.VariableRepository;
 import game.Map;
 import game.Movements;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author GILLES Anne-Sophie
  *
  */
-public class GUIGame extends JFrame{
+public class GUIGame extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private static GUIGame window = new GUIGame();
+	// private static GUIGame window = new GUIGame();
 	private static Movements movement;
 	private Painter graphicPainter;
 	private Graphics2D graphicContext;
+
+	private void setKeyBindings() {
+		ActionMap actionMap = getActionMap();
+		int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
+		InputMap inputMap = getInputMap(condition );
+		
+		char vkZ = 'z';
+		char vkQ = 'q';
+		char vkS = 's';
+		char vkD = 'd';
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0), vkZ);
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), vkQ);
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), vkS);
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), vkD);
+
+		actionMap.put(vkZ, new KeyAction(vkZ));
+		actionMap.put(vkQ, new KeyAction(vkQ));
+		actionMap.put(vkS, new KeyAction(vkS));
+		actionMap.put(vkD, new KeyAction(vkD));
+
+	}
+	
+	private class KeyAction extends AbstractAction {
+		public KeyAction(char vkZ) {
+			putValue(ACTION_COMMAND_KEY, vkZ);
+	    }
+		
+		@Override
+		public void actionPerformed(ActionEvent actionEvt) {
+			// System.out.println(actionEvt.getActionCommand() + " pressed");
+			System.out.println(actionEvt.getActionCommand());
+			char c = actionEvt.getActionCommand().charAt(0);
+	        movement.movement(c);
+	        
+	        repaint();
+	        
+	        if ( ((boolean) VariableRepository.getInstance().searchByName("characterInFight")) == true) {
+	        	JPanel parent = (JPanel)getParent();
+	        	CardLayout layout = (CardLayout) parent.getLayout();
+	        	layout.next(parent);
+	        }
+	        System.out.println("testRepaintAfter");
+	        
+		}
+	}
 	
 	public GUIGame() {
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				movePlayer(arg0);
-			}
-		});
-		setSize(new Dimension(1050, 900));
-		setResizable(false);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Menu");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmQuitter = new JMenuItem("Quitter");
-		mnNewMenu.add(mntmQuitter);
-		
-		JMenu mnMultijoueurs = new JMenu("Multi-joueurs");
-		menuBar.add(mnMultijoueurs);
-		
-		JMenuItem mntmCombatreUnAutre = new JMenuItem("Combatre un autre joueur");
-		mnMultijoueurs.add(mntmCombatreUnAutre);
-		getContentPane().setLayout(null);
-		
-		JPanel panelMap = new JPanel();
-		panelMap.setBounds(10, 11, 474, 428);
-		getContentPane().add(panelMap);
-		
-		// panelMap.setBorder(BorderFactory.createLineBorder(Color.black));
-        setFocusable(true);
-        // this.player = new PlayersCharacter();
-        
-		try {
+		//listener = new CustomKeyListener();
+	      this.setFocusable(true);
+	      this.requestFocus();
+	      // this.addKeyListener((KeyListener) listener);
+	      setKeyBindings();
+	      /*
+		// this.setBounds(10, 11, 474, 428);
+        this.setFocusable(true);
+        // this.setRequestFocusEnabled(true);
+        this.requestFocusInWindow();
+        */
+        try {
 			initGameVariables();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void initGameVariables() throws IOException {
@@ -86,7 +123,6 @@ public class GUIGame extends JFrame{
 	
 		movement = new Movements(height, width, monsterPercentage, obstaclePercentage,playerXCords,playerYCords);
 		graphicPainter = new Painter(movement);
-		// graphicPainter.drawDebugGrid(g, 20, 20);
 		
 	}
 	
@@ -94,27 +130,14 @@ public class GUIGame extends JFrame{
         super.paint(g);       
         Graphics2D g2 = (Graphics2D) g;
         this.graphicContext = g2;
+        // g2.translate(0, GRPGParameters.STARTING_DRAW_ORIGIN);
         //g2.rotate(3.14);
         //graphicContext.setClip(-200,-200,3000,3000);
         // Draw Text
         graphicPainter.drawMap(g2);
         graphicPainter.drawPlayer(graphicContext);
-        graphicPainter.drawDebugGrid(graphicContext,20,20);
+        graphicPainter.drawDebugGrid(graphicContext,20,20, this);
         // g.translate(2,2);
     }
-	
-	 public void movePlayer(KeyEvent e) {
-	        
-        movement.movement(e.getKeyChar());
-        
-        repaint();
-	 }
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		window.setVisible(true);
-		window.setTitle("RPG");
-	}
+
 }
