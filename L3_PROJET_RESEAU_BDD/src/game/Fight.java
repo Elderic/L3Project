@@ -21,6 +21,8 @@ public class Fight {
 	boolean enemyIsDefending;
 	FightAbilities playerAbilities;	//A RECUP
 	FightAbilities enemyAbilities;	//A RECUP
+	int playerHealth;
+	int enemyHealth;
 	
 	public Fight () {
 		// Se garder la possibilité de créer une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
@@ -35,6 +37,9 @@ public class Fight {
 		System.out.println(player.getAttack());
 					
 		enemyAbilities = new FightAbilities(enemy.getAttack(), enemy.getDefense());
+		
+		playerHealth = player.getHealth();
+		enemyHealth = enemy.getHealth();
 	}
 	
 	public void initFight(JTextArea textArea) {
@@ -50,8 +55,8 @@ public class Fight {
 	}
 	
 	public void inFight(String parameter, JTextArea textArea) {
-		int playerHealth = player.getHealth();
-		int enemyHealth = enemy.getHealth();
+		// int playerHealth = player.getHealth();
+		// int enemyHealth = enemy.getHealth();
 		
 		// Scanner read = new Scanner(System.in);
 		if (playerHealth > 0 && enemyHealth > 0) {
@@ -77,7 +82,7 @@ public class Fight {
 					int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
 					if(damage>0) {
 						enemyHealth -= damage;
-						this.enemy.setHealth(enemyHealth);
+						// this.enemy.setHealth(enemyHealth);
 					}
 				}
 				else {
@@ -85,11 +90,11 @@ public class Fight {
 					int damageToPlayer = enemyAbilities.getAttack();
 					if(damageToEnemy>0) {
 						enemyHealth -= damageToEnemy;
-						this.enemy.setHealth(enemyHealth);
+						// this.enemy.setHealth(enemyHealth);
 					}
 					if(damageToPlayer>0) {
 						playerHealth -= damageToPlayer;
-						this.player.setHealth(playerHealth);
+						// this.player.setHealth(playerHealth);
 					}
 				}
 			}
@@ -98,7 +103,7 @@ public class Fight {
 					int damage = enemyAbilities.getAttack()-playerAbilities.getDefense();
 					if(damage>0) {
 						playerHealth -= damage;
-						this.player.setHealth(playerHealth);
+						// this.player.setHealth(playerHealth);
 					}
 				}
 			}
@@ -109,15 +114,18 @@ public class Fight {
 			System.out.println("playerHealth = " + playerHealth + " enemyHealth = " + enemyHealth);
 			
 			if ( enemyHealth <= 0 || playerHealth <= 0 ) {
-				VariableRepository.getInstance().modify("characterInFight", false);
+				// VariableRepository.getInstance().modify("characterInFight", false);
+				// VariableRepository.getInstance().searchByName("characterInFight")
+				VariableRepository.getInstance().register("characterInFight", false);
 				// VariableRepository.getInstance().removeByName("enemy_1");
 				System.out.println("Combat terminé !");
 				if(enemyHealth>=0) {
-					System.out.println("Félicitation, vous avez gagné.");
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
+					System.out.println("Félicitation, vous avez gagné.");
 				}
 				else {
 					System.out.println("Dommage, vous avez perdu.");
+					
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
 				} 
 			}

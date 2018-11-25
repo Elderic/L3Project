@@ -12,9 +12,11 @@ public class PlayersStatistics {
 	private int nb_victories;
 	private int nb_defeats;
 	
-	
-	
-	
+	public PlayersStatistics(int nbFights, int nbWins, int nbLoses) {
+		this.nb_fights = nbFights;
+		this.nb_victories = nbWins;
+		this.nb_defeats = nbLoses;
+	}
 	
 	/**
 	 * @return the nb_fights

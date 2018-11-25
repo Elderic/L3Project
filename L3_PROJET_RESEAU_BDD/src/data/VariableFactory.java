@@ -40,6 +40,17 @@ public class VariableFactory {
 		return player;
 	}
 	*/
+	
+	public static Object createPlayersStatistics(int nbFight, int nbWin, int nbLose) {
+		PlayersStatistics playersStats = new PlayersStatistics(nbFight, nbWin, nbLose);
+		return playersStats;
+	}
+	
+	public static Object createPlayersStuff() {
+		PlayersStuff playersStuff = new PlayersStuff();
+		return playersStuff;
+	}
+	
 	public static Object createVariable(String type, String name, int health, int attack, int defense) {
 		/*
 		Variable variable = new Variable(name);
@@ -61,27 +72,4 @@ public class VariableFactory {
 			return null;
 		}
 	}
-
-	/*
-	public static ArithmeticOperation createOperation(char type, Tree leftOperand, Tree rightOperand) {
-		switch (type) {
-		case '+':
-			Addition addition = new Addition(leftOperand, rightOperand);
-			logger.info("Addition operation creation");
-			return addition;
-		case '-':
-			Subtraction subtraction = new Subtraction(leftOperand, rightOperand);
-			logger.info("Subtraction operation creation");
-			return subtraction;
-		case '*':
-			Multiplication multiplication = new Multiplication(leftOperand, rightOperand);
-			logger.info("Multiplication operation creation");
-			return multiplication;
-		default:
-			return null;
-		}
-
-	}
-	
-	*/
 }

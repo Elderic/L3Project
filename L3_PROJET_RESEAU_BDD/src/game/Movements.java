@@ -23,8 +23,12 @@ public class Movements {
 		// PlayersCharacter (String name, int health, int attack, int defense, String variableName, int experience, String gender, PlayersStuff stuff, PlayersStatistics stats)
 		// Faudra donc mettre un query ici pour pouvoir créer le personnage suivant ce qui se trouve sur la base de données
 		// PlayersCharacter player = new PlayersCharacter("Marcross", 20, 3, 2, 0,"male",null,null);
+		PlayersStuff playersStuff = new PlayersStuff();
+		PlayersStatistics playersStatistics = new PlayersStatistics(0,0,0);
 		PlayersCharacter player = (PlayersCharacter) VariableFactory.getInstance().createVariable("PlayersCharacter", "Marcross", 20, 3, 2);
 		VariableRepository.getInstance().register("player1", player);
+		((PlayersCharacter) VariableRepository.getInstance().searchByName("player1")).setStuff(playersStuff);
+		((PlayersCharacter) VariableRepository.getInstance().searchByName("player1")).setStats(playersStatistics);
 		this.currentPlayerPositionX = xPlayer;
 		this.currentPlayerPositionY = yPlayer;
 		
@@ -54,6 +58,7 @@ public class Movements {
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
 			// System.out.println("Valeur de characterInFight avant modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 			VariableRepository.getInstance().modify("characterInFight", true);
+			// ((PlayersCharacter) VariableRepository.getInstance().searchByName("PlayersCharacter")).getStats().setNb_fights();;
 			// System.out.println("Valeur de characterInFight après modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 			
 			return;

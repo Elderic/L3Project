@@ -17,8 +17,15 @@ public class PlayersStuff {
 	private Stuff weapon;
 	
 	
-	
-	
+	public PlayersStuff() {
+		this.helmet = null;
+		this.epaulets = null;
+		this.breastplate = null;
+		this.leggings = null;
+		this.shoes = null;
+		this.armbands = null;
+		this.weapon = null;
+	}
 	
 	/**
 	 * @return the helmet
