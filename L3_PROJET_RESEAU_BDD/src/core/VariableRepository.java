@@ -20,9 +20,9 @@ public class VariableRepository {
 		variables.put(name, initialValue);
 	}
 	
-	public void modify(String name, Object initialValue) {
+	/*public void modify(String name, Object initialValue) {
 		this.variables.computeIfPresent(name, (k, v) -> initialValue);
-	}
+	}*/
 	/*
 	public int search(Object variable) {
 		return variables.get(variable.getName());

@@ -79,7 +79,12 @@ public class GUIGame extends JPanel {
 			// System.out.println(actionEvt.getActionCommand() + " pressed");
 			System.out.println(actionEvt.getActionCommand());
 			char c = actionEvt.getActionCommand().charAt(0);
-	        movement.movement(c);
+	        try {
+				movement.movement(c);
+			} catch (IOException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        
 	        repaint();
 	        

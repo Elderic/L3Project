@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import javax.swing.JTextArea;
 
+import query.FightQuery;
+
 import core.VariableRepository;
 import data.VariableFactory;
 import gui.GUIDisplayHandler;
@@ -25,8 +27,8 @@ public class Fight {
 	int enemyHealth;
 	
 	public Fight () {
-		// Se garder la possibilité de créer une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
-		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
+		// Se garder la possibilitï¿½ de crï¿½er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
+		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Crï¿½ature du Malin", 20, 3, 2);
 		VariableRepository.getInstance().register("enemy_1", enemyMonster);
 				
 		this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
@@ -50,8 +52,8 @@ public class Fight {
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		*/
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Début du combat !");
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Dï¿½but du combat !");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous dï¿½fendre pendant le tour ennemi (d).");
 	}
 	
 	public void inFight(String parameter, JTextArea textArea) {
@@ -65,7 +67,7 @@ public class Fight {
 			int random = (int) (Math.random()*100);
 			if(random<50) {
 				enemyIsDefending = true;
-				GUIDisplayHandler.displayAppendOnTextArea(textArea, "L'ennemi s'est défendu !");
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "L'ennemi s'est dï¿½fendu !");
 			}
 			else {
 				enemyIsDefending = false;
@@ -118,14 +120,20 @@ public class Fight {
 				// VariableRepository.getInstance().searchByName("characterInFight")
 				VariableRepository.getInstance().register("characterInFight", false);
 				// VariableRepository.getInstance().removeByName("enemy_1");
-				System.out.println("Combat terminé !");
+				System.out.println("Combat terminï¿½ !");
 				if(enemyHealth>=0) {
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
-					System.out.println("Félicitation, vous avez gagné.");
+					System.out.println("Fï¿½licitation, vous avez gagnï¿½.");
+					
+/****************requete, a voir pour getRarity****************************/
+					//boolean resultQuery=FightQuery.endFightQuery("victory", 10, EnemyCharacter.getRarity());
 				}
 				else {
 					System.out.println("Dommage, vous avez perdu.");
 					
+/****************requete, a voir pour getRarity****************************/
+					//boolean resultQuery=FightQuery.endFightQuery("defeat", 5, EnemyCharacter.getRarity());
+
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
 				} 
 			}
@@ -133,9 +141,9 @@ public class Fight {
 	}
 	
 	/*
-	 System.out.println("Combat terminé !");
+	 System.out.println("Combat terminï¿½ !");
 		if(enemyHealth>=0) {
-			System.out.println("Félicitation, vous avez gagné.");
+			System.out.println("Fï¿½licitation, vous avez gagnï¿½.");
 			//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 		}
 		else {
@@ -154,8 +162,8 @@ public class Fight {
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		
 		
-		System.out.println("Début du combat !");
-		System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
+		System.out.println("Dï¿½but du combat !");
+		System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous dï¿½fendre pendant le tour ennemi (d).");
 		
 		Scanner read = new Scanner(System.in);
 		while(playerHealth>0 && enemyHealth>0) {
@@ -164,7 +172,7 @@ public class Fight {
 			int random = (int) (Math.random()*100);
 			if(random<50) {
 				enemyIsDefending = true;
-				System.out.println("L'ennemi se défend");
+				System.out.println("L'ennemi se dï¿½fend");
 			}
 			else {
 				enemyIsDefending = false;
@@ -214,9 +222,9 @@ public class Fight {
 		}
 		read.close();
 		
-		System.out.println("Combat terminé !");
+		System.out.println("Combat terminï¿½ !");
 		if(enemyHealth>=0) {
-			System.out.println("Félicitation, vous avez gagné.");
+			System.out.println("Fï¿½licitation, vous avez gagnï¿½.");
 			//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 		}
 		else {

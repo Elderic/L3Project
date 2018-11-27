@@ -3,6 +3,9 @@
  */
 package game;
 
+import java.io.IOException;
+
+import query.FightQuery;
 import core.VariableRepository;
 import data.VariableFactory;
 import game.Map;
@@ -16,12 +19,12 @@ public class Movements {
 	private int currentPlayerPositionY; //height
 	private Map map; //INITIALISER DANS CONSTRUCTEUR
 	
-	// On va créer un joueur ici
+	// On va crï¿½er un joueur ici
 	public Movements(int width, int height, int monsterPercentage, int obstaclePercentage, int xPlayer, int yPlayer) {
 		this.map = new Map(height, width, monsterPercentage, obstaclePercentage);
 		
 		// PlayersCharacter (String name, int health, int attack, int defense, String variableName, int experience, String gender, PlayersStuff stuff, PlayersStatistics stats)
-		// Faudra donc mettre un query ici pour pouvoir créer le personnage suivant ce qui se trouve sur la base de données
+		// Faudra donc mettre un query ici pour pouvoir crï¿½er le personnage suivant ce qui se trouve sur la base de donnï¿½es
 		// PlayersCharacter player = new PlayersCharacter("Marcross", 20, 3, 2, 0,"male",null,null);
 		PlayersStuff playersStuff = new PlayersStuff();
 		PlayersStatistics playersStatistics = new PlayersStatistics(0,0,0);
@@ -32,12 +35,12 @@ public class Movements {
 		this.currentPlayerPositionX = xPlayer;
 		this.currentPlayerPositionY = yPlayer;
 		
-		//On insère dans le stock de variables le booléen characterInFight, qui nous permettra de savoir de n'importe où si le personnage est en combat ou non
+		//On insï¿½re dans le stock de variables le boolï¿½en characterInFight, qui nous permettra de savoir de n'importe oï¿½ si le personnage est en combat ou non
 		
 		VariableRepository.getInstance().register("characterInFight", false);
 	}
 	
-	public void movement(char letter) {
+	public void movement(char letter) throws IOException, InterruptedException {
 		switch(letter) {
 			case 'z': this.moveUp(); //UP
 					break;
@@ -57,16 +60,19 @@ public class Movements {
 		
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
 			// System.out.println("Valeur de characterInFight avant modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
-			VariableRepository.getInstance().modify("characterInFight", true);
+			VariableRepository.getInstance().register("characterInFight", true);
 			// ((PlayersCharacter) VariableRepository.getInstance().searchByName("PlayersCharacter")).getStats().setNb_fights();;
-			// System.out.println("Valeur de characterInFight après modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
+			// System.out.println("Valeur de characterInFight aprï¿½s modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
+
+			/***************requete*****************/			
+			//boolean resultQuery=FightQuery.FightQuery();
 			
 			return;
 			//LET'S FIGHT
 			// System.out.println("FIght Begin !!");
 			
-			// System.out.println("Début du combat !");
-			// System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
+			// System.out.println("Dï¿½but du combat !");
+			// System.out.println("Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous dï¿½fendre pendant le tour ennemi (d).");
 			
 			// Fight fight = new Fight();
 			// qsfight.inFight();
