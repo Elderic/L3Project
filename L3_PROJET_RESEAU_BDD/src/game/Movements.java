@@ -64,7 +64,7 @@ public class Movements {
 			// ((PlayersCharacter) VariableRepository.getInstance().searchByName("PlayersCharacter")).getStats().setNb_fights();;
 			// System.out.println("Valeur de characterInFight apr�s modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 
-			/***************requete*****************/			
+/****************requete*****************/			
 			//boolean resultQuery=FightQuery.FightQuery();
 			
 			return;

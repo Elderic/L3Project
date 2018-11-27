@@ -122,7 +122,12 @@ public class GUIFight extends JPanel implements ComponentListener {
 	private class AttackAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			// System.out.println("Attack");
-			((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("a", textArea);
+			try {
+				((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("a", textArea);
+			} catch (IOException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((PlayersCharacter)VariableRepository.getInstance().searchByName("player1")).getHealth() );
 			GUIDisplayHandler.updateProgressBarValue(healthBarOpponent, ((EnemyCharacter)VariableRepository.getInstance().searchByName("enemy_1")).getHealth() );
@@ -146,7 +151,12 @@ public class GUIFight extends JPanel implements ComponentListener {
 	private class DefenseAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			// System.out.println("Defense");
-			((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("d", textArea);
+			try {
+				((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("d", textArea);
+			} catch (IOException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((PlayersCharacter)VariableRepository.getInstance().searchByName("player1")).getHealth() );
 			GUIDisplayHandler.updateProgressBarValue(healthBarOpponent, ((EnemyCharacter)VariableRepository.getInstance().searchByName("enemy_1")).getHealth() );

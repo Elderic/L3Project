@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import core.GameVariableRepository;
 
 public class SigningInUpQuery {
 	
@@ -17,7 +16,6 @@ public class SigningInUpQuery {
 		
 		try {
 			// deuxieme argument : le numero de port que l'on contacte
-			//socket = new Socket ("192.168.1.30", 5000) ;
 			socket = new Socket ("127.0.0.1", 5000) ;
 			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
 			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
@@ -28,7 +26,6 @@ public class SigningInUpQuery {
 		} 
 	
         flux_sortie.println(typeQuery);
-        // on lit ce qu'a envoye le serveur
         chaine = flux_entree.readLine () ;
         System.out.println ("Le serveur m'a repondu : " + chaine) ;
         if(chaine.equals("ready to sign in")){
@@ -97,7 +94,6 @@ public class SigningInUpQuery {
 		
 		try {
 			// deuxieme argument : le numero de port que l'on contacte
-			//socket = new Socket ("192.168.1.30", 5000) ;
 			socket = new Socket ("127.0.0.1", 5000) ;
 			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
 			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;

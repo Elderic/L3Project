@@ -12,7 +12,9 @@ public class Stuff {
 	private String type;
 	private String rarity;
 	private String description;
-	
+	private int attack;
+	private int defense;
+
 	
 	
 	
@@ -43,7 +45,12 @@ public class Stuff {
 	public String getDescription() {
 		return description;
 	}
-	
+	public int getAttack(){
+		return attack;
+	}
+	public int getDefense(){
+		return defense;
+	}
 	/**
 	 * @param name the name to set
 	 */
@@ -71,13 +78,19 @@ public class Stuff {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	public void setAttack(int attack){
+		this.attack=attack;
+	}
+	public void setDefense(int defense){
+		this.defense=defense;
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Stuff [name=" + name + ", type=" + type + ", rarity=" + rarity + ", description=" + description + "]";
+		return "Stuff [name=" + name + ", type=" + type + ", rarity=" + rarity + ", description=" + description 
+				+ ", attack=" +attack+", defense="+defense+"]";
 	}
 }

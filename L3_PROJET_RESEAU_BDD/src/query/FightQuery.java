@@ -1,14 +1,23 @@
 package query;
+import game.EnemyCharacter;
+import game.FightAbilities;
+import game.PlayersCharacter;
+import game.Stuff;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import core.GameVariableRepository;
+
+import core.VariableRepository;
+import data.VariableFactory;
 
 public class FightQuery {
-	
+	private static EnemyCharacter enemy;
+	private static PlayersCharacter player;
+
 	public static boolean FightQuery() throws IOException, InterruptedException {
 		Socket socket = null ;
 		PrintWriter flux_sortie = null ;
@@ -28,12 +37,13 @@ public class FightQuery {
 		} 
 	
         flux_sortie.println("fightSolo");
-        // on lit ce qu'a envoye le serveur
         chaine = flux_entree.readLine () ;
         System.out.println ("Le serveur m'a repondu : " + chaine) ;
         if(chaine.equals("ready to receive player id")){
 
-            flux_sortie.println (GameVariableRepository.getInstance().getPlayerId()) ;
+            //flux_sortie.println (GameVariableRepository.getInstance().getPlayerId()) ;
+        	flux_sortie.println("player00015");
+        	
             System.out.println("id envoyer");
             chaine = flux_entree.readLine () ;   
          }
@@ -44,19 +54,18 @@ public class FightQuery {
                 /**the data are organized like:
                  *name/health/attack/defense
                  *so we split the string using the separator "/"
-                 *
                  **/
                 String[] split=chaine.split("/");
                 String name=split[0];
                 String health=split[1];
                 String attack=split[2];
                 String defense=split[3];
+                player= (PlayersCharacter) VariableRepository.getInstance().searchByName("player1");
+               // player.setName(name);
+                player.setHealth(Integer.parseInt(health));
+                player.setAttack(Integer.parseInt(attack));
+                player.setDefense(Integer.parseInt(defense));
 
-                GameVariableRepository.getInstance().setPlayerName(name);
-                GameVariableRepository.getInstance().setPlayerHealth(Integer.parseInt(health));
-                GameVariableRepository.getInstance().setPlayerAttack(Integer.parseInt(attack));
-                GameVariableRepository.getInstance().setPlayerDefense(Integer.parseInt(defense));
-                //flux_sortie.println("next");
                 chaine = flux_entree.readLine () ;   
                 if(chaine.equals("sending enemy data")){
                     System.out.println("we're about to receive the enemy data");  
@@ -69,14 +78,22 @@ public class FightQuery {
                     String rarityEnemy=splitEnemy[3];
                     String attackEnemy=splitEnemy[4];
                     String defenseEnemy=splitEnemy[5];
-                    //a stocker quelques part
-
+                                    
+                    EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter",nameEnemy, Integer.parseInt(healthEnemy),Integer.parseInt(attackEnemy),Integer.parseInt(defenseEnemy));
+            		VariableRepository.getInstance().register("enemy_1", enemyMonster);
+            		enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
+            		enemy.setType(typeEnemy);
+                    enemy.setRarity(rarityEnemy);
+                    /*enemy.setName(name);
+            		enemy.setHealth(Integer.parseInt(healthEnemy));          
+                    enemy.setAttack(Integer.parseInt(attackEnemy));
+                    enemy.setDefense(Integer.parseInt(defenseEnemy));*/
+                    
                 	System.out.println("info enemy:");
 
                     for(int i=0;i<=5;i++){
                     	System.out.println(splitEnemy[i]);
-                    }
-                    
+                    }   
                 }
                 else{
                 	System.out.println("error");
@@ -84,20 +101,17 @@ public class FightQuery {
                     closeConnection(flux_sortie,flux_entree,socket);
                     return false;
                 }
-                
                 closeConnection(flux_sortie,flux_entree,socket);
-
                 return true;
             }
             else{
                 System.out.println("error, no data retrieved");
                 System.out.println(chaine);
-
                 closeConnection(flux_sortie,flux_entree,socket);
                 return false;
             }
         }
-	public static boolean endFightQuery(String resultFight, int experienceWon, String rarity) throws IOException, InterruptedException {
+	public static Stuff endFightQuery(String resultFight, int experienceWon, String rarity) throws IOException, InterruptedException {
 		Socket socket = null ;
 		PrintWriter flux_sortie = null ;
 		BufferedReader flux_entree = null ;
@@ -105,7 +119,6 @@ public class FightQuery {
 		
 		try {
 			// deuxieme argument : le numero de port que l'on contacte
-			//socket = new Socket ("192.168.1.30", 5000) ;
 			socket = new Socket ("127.0.0.1", 5000) ;
 			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
 			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
@@ -114,14 +127,17 @@ public class FightQuery {
 			System.err.println ("Hote inconnu") ;
             closeConnection(flux_sortie,flux_entree,socket);
 
-            return false;
+            return null;
 		} 
         flux_sortie.println("endFight");
         chaine = flux_entree.readLine () ;
         System.out.println ("Le serveur m'a repondu : " + chaine) ;
         if(chaine.equals("ready to update data")){
             System.out.println ("etape1") ;
-        	flux_sortie.println(GameVariableRepository.getInstance().getPlayerId()) ;
+            
+        	//flux_sortie.println(GameVariableRepository.getInstance().getPlayerId()) ;
+            flux_sortie.println("player00015");
+            
             chaine = flux_entree.readLine () ;
             if(chaine.equals("id received")){
             	flux_sortie.println(experienceWon) ;
@@ -147,17 +163,24 @@ public class FightQuery {
                     			String descriptionLoot=splitLoot[3];
                     			String attackLoot=splitLoot[4];
                     			String defenseLoot=splitLoot[5];
-                    			//a stocker
+                    			Stuff stuff=new Stuff();
+                    			stuff.setName(nameLoot);
+                    			stuff.setType(typeLoot);
+                    			stuff.setRarity(rarityLoot);
+                    			stuff.setDescription(descriptionLoot);
+                    			stuff.setAttack(Integer.parseInt(attackLoot));
+                    			stuff.setDefense(Integer.parseInt(defenseLoot));
+                    			
                     			for(int i=0;i<6;i++){
                     				System.out.println(splitLoot[i]);
                     			}
                     			closeConnection(flux_sortie,flux_entree,socket);
-                    			return true;
+                    			return stuff;
                     		}
                     		else {
                     			System.out.println("erreur update");
                     			closeConnection(flux_sortie,flux_entree,socket);
-                    			return false;
+                    			return null;
                     		}  
                     	}
                 	}
@@ -166,9 +189,9 @@ public class FightQuery {
         }
         else{
             closeConnection(flux_sortie,flux_entree,socket);
-        	return false;
+        	return null;
         }
-		return false;
+		return null;
 	}
 	
 	public static void closeConnection(PrintWriter flux_sortie,BufferedReader flux_entree, Socket socket) throws IOException{

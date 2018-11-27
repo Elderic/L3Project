@@ -3,6 +3,7 @@
  */
 package game;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JTextArea;
@@ -42,6 +43,10 @@ public class Fight {
 		
 		playerHealth = player.getHealth();
 		enemyHealth = enemy.getHealth();
+		System.out.println("fight: player: "+player.getHealth()+"|"+player.getAttack()+"|"+player.getDefense());
+		System.out.println("fight: ennemi attack: "+enemy.getAttack()+" defense "+enemy.getDefense());
+		System.out.println("fight: ennemi rarity: "+enemy.getRarity()+" type "+enemy.getType());
+
 	}
 	
 	public void initFight(JTextArea textArea) {
@@ -56,10 +61,9 @@ public class Fight {
 		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous d�fendre pendant le tour ennemi (d).");
 	}
 	
-	public void inFight(String parameter, JTextArea textArea) {
+	public void inFight(String parameter, JTextArea textArea) throws IOException, InterruptedException {
 		// int playerHealth = player.getHealth();
 		// int enemyHealth = enemy.getHealth();
-		
 		// Scanner read = new Scanner(System.in);
 		if (playerHealth > 0 && enemyHealth > 0) {
 			// String tmp = read.nextLine();
@@ -125,14 +129,18 @@ public class Fight {
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 					System.out.println("F�licitation, vous avez gagn�.");
 					
-/****************requete, a voir pour getRarity****************************/
-					//boolean resultQuery=FightQuery.endFightQuery("victory", 10, EnemyCharacter.getRarity());
+/****************requete****************************/
+					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
+					Stuff resultQuery=FightQuery.endFightQuery("victory", 10, enemy.getRarity());					
+					System.out.println(resultQuery.toString());*/
 				}
 				else {
 					System.out.println("Dommage, vous avez perdu.");
 					
-/****************requete, a voir pour getRarity****************************/
-					//boolean resultQuery=FightQuery.endFightQuery("defeat", 5, EnemyCharacter.getRarity());
+/****************requete****************************/
+					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
+					Stuff resultQuery=FightQuery.endFightQuery("defeat", 5, enemy.getRarity());
+					System.out.println(resultQuery.toString());*/
 
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
 				} 
