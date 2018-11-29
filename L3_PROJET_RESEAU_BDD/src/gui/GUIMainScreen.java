@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GUIMainScreen extends JPanel {
-	
 	private static final long serialVersionUID = 7064806528132220998L;
+	
 	private JLabel lblRpg;
 	private JButton signIn;
 	private JButton signUp;

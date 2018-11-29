@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +13,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import game.Movements;
-import game.PlayersCharacter;
 import gui.GRPGParameters;
 
 /* The painter class is needed for drawing all the graphics, such as the maps, characters skins, everything that involves graphic rendering.
  * 
  */
 public class Painter extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	Graphics2D graphicContext;
 	Movements movementHandler;
 	

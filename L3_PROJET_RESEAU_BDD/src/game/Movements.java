@@ -5,7 +5,6 @@ package game;
 
 import java.io.IOException;
 
-import query.FightQuery;
 import core.VariableRepository;
 import data.VariableFactory;
 import game.Map;

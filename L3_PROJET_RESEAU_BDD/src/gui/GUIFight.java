@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 
 import core.VariableRepository;
 import game.Fight;
-import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 

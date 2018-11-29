@@ -1,25 +1,21 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 
 public class GUIMainWindow extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
 	
 	final static String STARTINGPANEL= "RPG - STARTING PANEL";
 	final static String GAMEPANEL = "RPG - GAME PANEL";

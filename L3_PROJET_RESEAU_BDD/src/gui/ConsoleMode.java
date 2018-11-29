@@ -32,8 +32,8 @@ public class ConsoleMode {
 			Scanner read = new Scanner(System.in);
 			String content = read.nextLine();
 			if(content.length()==1) {
-				char letter = content.charAt(0);
-				/*
+				/*char letter = content.charAt(0);
+				
 				Movements m = new Movements();
 				m.movement(letter);
 				*/

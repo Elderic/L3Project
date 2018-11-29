@@ -4,11 +4,8 @@
 package game;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JTextArea;
-
-import query.FightQuery;
 
 import core.VariableRepository;
 import data.VariableFactory;

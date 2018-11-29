@@ -5,36 +5,21 @@ package gui;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FocusTraversalPolicy;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 
 import core.VariableRepository;
-import game.Map;
 import game.Movements;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * @author GILLES Anne-Sophie
@@ -70,6 +55,8 @@ public class GUIGame extends JPanel {
 	}
 	
 	private class KeyAction extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
 		public KeyAction(char vkZ) {
 			putValue(ACTION_COMMAND_KEY, vkZ);
 	    }
@@ -82,7 +69,6 @@ public class GUIGame extends JPanel {
 	        try {
 				movement.movement(c);
 			} catch (IOException | InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        
@@ -113,7 +99,6 @@ public class GUIGame extends JPanel {
         try {
 			initGameVariables();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

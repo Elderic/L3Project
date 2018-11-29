@@ -13,7 +13,6 @@ public class EnemyCharacter extends Character {
 	
 	public EnemyCharacter(String name, int health, int attack, int defense) {
 		super(name, health, attack, defense);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @return the type

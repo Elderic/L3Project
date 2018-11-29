@@ -22,7 +22,8 @@ import javax.swing.JButton;
 
 
 public class GUISigningUp extends JPanel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField loginField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField2;
@@ -81,11 +82,9 @@ public class GUISigningUp extends JPanel {
 							subscriptionImpossibleField.setVisible(true);
 						}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
