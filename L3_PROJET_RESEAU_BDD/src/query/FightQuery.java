@@ -1,6 +1,5 @@
 package query;
 import game.EnemyCharacter;
-import game.FightAbilities;
 import game.PlayersCharacter;
 import game.Stuff;
 
@@ -13,6 +12,7 @@ import java.net.UnknownHostException;
 
 import core.VariableRepository;
 import data.VariableFactory;
+
 
 public class FightQuery {
 	private static EnemyCharacter enemy;
