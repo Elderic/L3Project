@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 import java.io.IOException;
@@ -24,6 +21,10 @@ public class Fight {
 	int playerHealth;
 	int enemyHealth;
 	
+	
+	/**
+	 * Create a Fight
+	 */
 	public Fight () {
 		// Se garder la possibilitï¿½ de crï¿½er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
 		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
@@ -43,9 +44,14 @@ public class Fight {
 		System.out.println("fight: player: "+player.getHealth()+"|"+player.getAttack()+"|"+player.getDefense());
 		System.out.println("fight: ennemi attack: "+enemy.getAttack()+" defense "+enemy.getDefense());
 		System.out.println("fight: ennemi rarity: "+enemy.getRarity()+" type "+enemy.getType());
-
 	}
 	
+	
+	/**
+	 * Start the fight
+	 * 
+	 * @param textArea
+	 */
 	public void initFight(JTextArea textArea) {
 		//IA A FAIRE
 		/*
@@ -54,10 +60,19 @@ public class Fight {
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		*/
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Dï¿½but du combat !");
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous dï¿½fendre pendant le tour ennemi (d).");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Début du combat !");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
 	}
 	
+	/**
+	 * Manage the fight
+	 * 
+	 * @param parameter
+	 * @param textArea
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public void inFight(String parameter, JTextArea textArea) throws IOException, InterruptedException {
 		// int playerHealth = player.getHealth();
 		// int enemyHealth = enemy.getHealth();
@@ -240,6 +255,8 @@ public class Fight {
 	*/
 	
 	/**
+	 * Get the enemy of the fight
+	 * 
 	 * @return the enemy
 	 */
 	public EnemyCharacter getEnemy() {
@@ -247,6 +264,8 @@ public class Fight {
 	}
 	
 	/**
+	 * Get the player of the fight
+	 * 
 	 * @return the player
 	 */
 	public PlayersCharacter getPlayer() {
@@ -254,6 +273,8 @@ public class Fight {
 	}
 	
 	/**
+	 * Set the enemy of the fight
+	 * 
 	 * @param enemy the enemy to set
 	 */
 	public void setEnemy(EnemyCharacter enemy) {
@@ -261,6 +282,8 @@ public class Fight {
 	}
 	
 	/**
+	 * Set the player of the fight
+	 * 
 	 * @param player the player to set
 	 */
 	public void setPlayer(PlayersCharacter player) {

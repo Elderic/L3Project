@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -8,11 +5,20 @@ package game;
  *
  */
 public class Character {
-	protected String name;
-	protected int health;
-	protected int attack;
-	protected int defense;
+	private String name;
+	private int health;
+	private int attack;
+	private int defense;
 	
+	
+	/**
+	 * Create a Character
+	 * 
+	 * @param name
+	 * @param health
+	 * @param attack
+	 * @param defense
+	 */
 	public Character ( String name, int health, int attack, int defense) {
 		this.name = name;
 		this.health = health;
@@ -21,6 +27,8 @@ public class Character {
 	}
 	
 	/**
+	 * Get the name of the character
+	 * 
 	 * @return the name
 	 */
 	public String getName() {
@@ -28,6 +36,8 @@ public class Character {
 	}
 	
 	/**
+	 * Get the health of the character
+	 * 
 	 * @return the health
 	 */
 	public int getHealth() {
@@ -35,6 +45,8 @@ public class Character {
 	}
 	
 	/**
+	 * Get the attack of the character
+	 * 
 	 * @return the attack
 	 */
 	public int getAttack() {
@@ -42,6 +54,8 @@ public class Character {
 	}
 	
 	/**
+	 * Get the defense of the character
+	 * 
 	 * @return the defense
 	 */
 	public int getDefense() {
@@ -49,6 +63,8 @@ public class Character {
 	}
 	
 	/**
+	 * Set the name of the character
+	 * 
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
@@ -56,6 +72,8 @@ public class Character {
 	}
 	
 	/**
+	 * Set the health of the character
+	 * 
 	 * @param health the health to set
 	 */
 	public void setHealth(int health) {
@@ -63,6 +81,8 @@ public class Character {
 	}
 	
 	/**
+	 * Set the attack of the character
+	 * 
 	 * @param attack the attack to set
 	 */
 	public void setAttack(int attack) {
@@ -70,6 +90,8 @@ public class Character {
 	}
 	
 	/**
+	 * Set the defense of the character
+	 * 
 	 * @param defense the defense to set
 	 */
 	public void setDefense(int defense) {

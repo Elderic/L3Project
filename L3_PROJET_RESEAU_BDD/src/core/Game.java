@@ -1,21 +1,27 @@
 package core;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import java.awt.CardLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Game {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
 
+/**
+ * @author 
+ *
+ */
+public class Game {
 	private JFrame frame;
 
+	
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -29,6 +35,7 @@ public class Game {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the application.
@@ -37,6 +44,7 @@ public class Game {
 		initialize();
 	}
 
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

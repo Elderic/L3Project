@@ -7,8 +7,23 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * @author 
+ *
+ */
 public class SigningInUpQuery {
-	
+	/**
+	 * 
+	 * 
+	 * @param typeQuery
+	 * @param login
+	 * @param password
+	 * 
+	 * @return true or false
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public static boolean signingInUpQuery(String typeQuery,String login,String password) throws IOException, InterruptedException {
 		Socket socket = null ;
 		PrintWriter flux_sortie = null ;
@@ -87,6 +102,19 @@ public class SigningInUpQuery {
             return false;
         }
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @param playerId
+	 * @param gender
+	 * @param name
+	 * 
+	 * @return true or false
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public static boolean characterCreation(String playerId,String gender,String name) throws IOException, InterruptedException{
 		Socket socket = null ;
 		PrintWriter flux_sortie = null ;
@@ -131,10 +159,18 @@ public class SigningInUpQuery {
         }
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param flux_sortie
+	 * @param flux_entree
+	 * @param socket
+	 * 
+	 * @throws IOException
+	 */
 	public static void closeConnection(PrintWriter flux_sortie,BufferedReader flux_entree, Socket socket) throws IOException{
 		 	flux_sortie.close () ;
 	        flux_entree.close () ;
 	        socket.close () ;
 	}
 }
-

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -12,7 +9,12 @@ public class FightAbilities {
 	private int defense;
 	
 	
-	
+	/**
+	 * Create a FightAbilities
+	 * 
+	 * @param attack
+	 * @param defense
+	 */
 	public FightAbilities(int attack, int defense) {
 		setAttack(attack);
 		setDefense(defense);
@@ -20,6 +22,8 @@ public class FightAbilities {
 	
 	
 	/**
+	 * Get the attack
+	 * 
 	 * @return the attack
 	 */
 	public int getAttack() {
@@ -27,6 +31,8 @@ public class FightAbilities {
 	}
 	
 	/**
+	 * Get the defense
+	 * 
 	 * @return the defense
 	 */
 	public int getDefense() {
@@ -34,6 +40,8 @@ public class FightAbilities {
 	}
 	
 	/**
+	 * Set the attack
+	 * 
 	 * @param attack the attack to set
 	 */
 	public void setAttack(int attack) {
@@ -41,6 +49,8 @@ public class FightAbilities {
 	}
 	
 	/**
+	 * Set the defense
+	 * 
 	 * @param defense the defense to set
 	 */
 	public void setDefense(int defense) {

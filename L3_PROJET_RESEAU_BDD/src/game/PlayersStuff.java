@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -17,6 +14,9 @@ public class PlayersStuff {
 	private Stuff weapon;
 	
 	
+	/**
+	 * Create a stuff of a player
+	 */
 	public PlayersStuff() {
 		this.helmet = null;
 		this.epaulets = null;
@@ -27,13 +27,19 @@ public class PlayersStuff {
 		this.weapon = null;
 	}
 	
+	
 	/**
+	 * Get the helmet of the player
+	 * 
 	 * @return the helmet
 	 */
 	public Stuff getHelmet() {
 		return helmet;
 	}
+	
 	/**
+	 * Get the epaulets of the player
+	 * 
 	 * @return the epaulets
 	 */
 	public Stuff getEpaulets() {
@@ -41,6 +47,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Get the breastplate of the player
+	 * 
 	 * @return the breastplate
 	 */
 	public Stuff getBreastplate() {
@@ -48,6 +56,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Get the leggings of the player
+	 * 
 	 * @return the leggings
 	 */
 	public Stuff getLeggings() {
@@ -55,6 +65,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Get the shoes of the player
+	 * 
 	 * @return the shoes
 	 */
 	public Stuff getShoes() {
@@ -62,6 +74,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Get the armbands of the player
+	 * 
 	 * @return the armbands
 	 */
 	public Stuff getArmbands() {
@@ -69,6 +83,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Get the weapon of the player
+	 * 
 	 * @return the weapon
 	 */
 	public Stuff getWeapon() {
@@ -76,6 +92,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the helmet of the player
+	 * 
 	 * @param helmet the helmet to set
 	 */
 	public void setHelmet(Stuff helmet) {
@@ -83,6 +101,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the epaulets of the player
+	 * 
 	 * @param epaulets the epaulets to set
 	 */
 	public void setEpaulets(Stuff epaulets) {
@@ -90,6 +110,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the breastplate of the player
+	 * 
 	 * @param breastplate the breastplate to set
 	 */
 	public void setBreastplate(Stuff breastplate) {
@@ -97,6 +119,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the leggings of the player
+	 * 
 	 * @param leggings the leggings to set
 	 */
 	public void setLeggings(Stuff leggings) {
@@ -104,6 +128,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the shoes of the player
+	 * 
 	 * @param shoes the shoes to set
 	 */
 	public void setShoes(Stuff shoes) {
@@ -111,6 +137,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the armbands of the player
+	 * 
 	 * @param armbands the armbands to set
 	 */
 	public void setArmbands(Stuff armbands) {
@@ -118,6 +146,8 @@ public class PlayersStuff {
 	}
 	
 	/**
+	 * Set the weapon of the player
+	 * 
 	 * @param weapon the weapon to set
 	 */
 	public void setWeapon(Stuff weapon) {

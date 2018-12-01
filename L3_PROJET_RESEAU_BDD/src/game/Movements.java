@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 import java.io.IOException;
@@ -18,7 +15,18 @@ public class Movements {
 	private int currentPlayerPositionY; //height
 	private Map map; //INITIALISER DANS CONSTRUCTEUR
 	
-	// On va crï¿½er un joueur ici
+	
+	// On va créer un joueur ici
+	/**
+	 * Create Movements, to move the player on the map
+	 * 
+	 * @param width
+	 * @param height
+	 * @param monsterPercentage
+	 * @param obstaclePercentage
+	 * @param xPlayer
+	 * @param yPlayer
+	 */
 	public Movements(int width, int height, int monsterPercentage, int obstaclePercentage, int xPlayer, int yPlayer) {
 		this.map = new Map(height, width, monsterPercentage, obstaclePercentage);
 		
@@ -39,6 +47,15 @@ public class Movements {
 		VariableRepository.getInstance().register("characterInFight", false);
 	}
 	
+	
+	/**
+	 * Get the required movement and move the player if it is possible
+	 * 
+	 * @param letter
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public void movement(char letter) throws IOException, InterruptedException {
 		switch(letter) {
 			case 'z': this.moveUp(); //UP
@@ -78,6 +95,9 @@ public class Movements {
 		}
 	}
 	
+	/**
+	 * Move the player up if it is possible
+	 */
 	private void moveUp() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
@@ -88,6 +108,9 @@ public class Movements {
 		}
 	}
 	
+	/**
+	 * Move the player down if it is possible
+	 */
 	private void moveDown() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
@@ -98,6 +121,9 @@ public class Movements {
 		}
 	}
 	
+	/**
+	 * Move the player right if it is possible
+	 */
 	private void moveRight() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
@@ -108,6 +134,9 @@ public class Movements {
 		}
 	}
 	
+	/**
+	 * Move the player left if it is possible
+	 */
 	private void moveLeft() {
 		int currentX = this.getCurrentPlayerPositionX();
 		int currentY = this.getCurrentPlayerPositionY();
@@ -118,8 +147,9 @@ public class Movements {
 		}
 	}
 	
-	
 	/**
+	 * Get the current X coordinates of the player 
+	 * 
 	 * @return the curentPlayerPositionX
 	 */
 	public int getCurrentPlayerPositionX() {
@@ -127,6 +157,8 @@ public class Movements {
 	}
 	
 	/**
+	 * Get the current Y coordinates of the player 
+	 * 
 	 * @return the curentPlayerPositionY
 	 */
 	public int getCurrentPlayerPositionY() {
@@ -134,13 +166,17 @@ public class Movements {
 	}
 	
 	/**
-	 * @return the current map attribute
+	 * Get the map
+	 * 
+	 * @return the current map
 	 */
 	public Map getMap() {
 		return this.map;
 	}
 	
 	/**
+	 * Set the current X coordinates of the player 
+	 * 
 	 * @param curentPlayerPositionX the curentPlayerPositionX to set
 	 */
 	public void setCurentPlayerPositionX(int curentPlayerPositionX) {
@@ -148,6 +184,8 @@ public class Movements {
 	}
 	
 	/**
+	 * Set the current Y coordinates of the player 
+	 * 
 	 * @param curentPlayerPositionY the curentPlayerPositionY to set
 	 */
 	public void setCurentPlayerPositionY(int curentPlayerPositionY) {
@@ -155,12 +193,14 @@ public class Movements {
 	}
 
 	/**
+	 * Set the map
 	 * 
-	 * @param mapToSet the current map to set
+	 * @param mapToSet
 	 */
 	public void setMap(Map mapToSet) {
 		this.map = mapToSet;
 	}
+	
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

@@ -1,12 +1,6 @@
-/**
- * 
- */
 package gui;
 
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
+import javax.swing.*;
 
 import java.awt.CardLayout;
 import java.awt.Graphics;
@@ -14,9 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
 import core.VariableRepository;
 import game.Movements;
@@ -27,11 +18,16 @@ import game.Movements;
  */
 public class GUIGame extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
 	// private static GUIGame window = new GUIGame();
 	private static Movements movement;
 	private Painter graphicPainter;
 	private Graphics2D graphicContext;
 
+	
+	/**
+	 * 
+	 */
 	private void setKeyBindings() {
 		ActionMap actionMap = getActionMap();
 		int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
@@ -54,6 +50,10 @@ public class GUIGame extends JPanel {
 
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class KeyAction extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 
@@ -84,6 +84,10 @@ public class GUIGame extends JPanel {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	public GUIGame() {
 		//listener = new CustomKeyListener();
 	      this.setFocusable(true);
@@ -103,6 +107,11 @@ public class GUIGame extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * 
+	 * @throws IOException
+	 */
 	public void initGameVariables() throws IOException {
 		int width = 25;
 		int height = 20;
@@ -116,6 +125,9 @@ public class GUIGame extends JPanel {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void paint(Graphics g) {
         super.paint(g);       
         Graphics2D g2 = (Graphics2D) g;
@@ -129,5 +141,4 @@ public class GUIGame extends JPanel {
         graphicPainter.drawDebugGrid(graphicContext,20,20, this);
         // g.translate(2,2);
     }
-
 }

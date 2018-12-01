@@ -1,8 +1,15 @@
 package gui;
 
-// Public parameters for the Graphics of the RPG => Graphic RPG Parameters, needed for drawing some components on the graphical side of the game
-public class GRPGParameters {
+/**
+ * @author 
+ *
+ */
 
+/**
+ * Public parameters for the Graphics of the RPG => Graphic RPG Parameters, 
+ * needed for drawing some components on the graphical side of the game.
+ */
+public class GRPGParameters {
 	/**
 	 * Radical parameter.
 	 */
@@ -21,5 +28,4 @@ public class GRPGParameters {
 	public static final int POLICE_SIZE = BASIC * 30;
 	
 	public static final int STARTING_DRAW_ORIGIN = 50;
-
 }

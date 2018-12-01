@@ -1,21 +1,18 @@
 package gui;
 
+import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author 
+ *
+ */
 public class GUIMainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
 	
 	final static String STARTINGPANEL= "RPG - STARTING PANEL";
 	final static String GAMEPANEL = "RPG - GAME PANEL";
@@ -26,6 +23,7 @@ public class GUIMainWindow extends JFrame {
 	private GUIGame gamePanel;
 	private JButton startButton;
 	private CardLayout cardLayout;
+	
 	
 	/**
 	 * Launch the application.
@@ -43,6 +41,9 @@ public class GUIMainWindow extends JFrame {
 		});
 	}
 
+	/**
+	 * 
+	 */
 	public void initActions () {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -51,6 +52,7 @@ public class GUIMainWindow extends JFrame {
 			}
 		});
 	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -141,5 +143,4 @@ public class GUIMainWindow extends JFrame {
 		}
 		*/
 	}
-
 }

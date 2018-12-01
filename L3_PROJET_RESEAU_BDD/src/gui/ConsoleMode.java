@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gui;
 
 import java.util.Scanner;
@@ -43,10 +40,6 @@ public class ConsoleMode {
 			}
 			
 		}
-		
-
-		
-	//FIGHT
 		
 		//Fight f = new Fight();
 	}

@@ -1,22 +1,20 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.JPanel;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
 import game.Movements;
 import gui.GRPGParameters;
 
-/* The painter class is needed for drawing all the graphics, such as the maps, characters skins, everything that involves graphic rendering.
- * 
+/**
+ * @author 
+ *
+ * The painter class is needed for drawing all the graphics, 
+ * such as the maps, characters skins, everything that involves graphic rendering.
  */
 public class Painter extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +32,14 @@ public class Painter extends JPanel {
 	
 	JPanel gamePanel;
 	
+	
+	/**
+	 * 
+	 * 
+	 * @param movement
+	 * 
+	 * @throws IOException
+	 */
 	public Painter(Movements movement) throws IOException {
 		System.out.println("Working Directory = " +
 	              System.getProperty("user.dir"));
@@ -54,18 +60,33 @@ public class Painter extends JPanel {
 		imageEnemyBlob = ImageIO.read(new File("L3_PROJET_RESEAU_BDD\\ENEMIES\\MoldBrown.png"));
 		*/
 		this.movementHandler = movement;
-		
-		
 	}
 	
+	
+	/**
+	 * Get the preferredSize for the window
+	 * 
+	 * @return preferredSize
+	 */
 	public Dimension getPreferredSize() {
         return new Dimension(GRPGParameters.WINDOW_WIDTH,GRPGParameters.WINDOW_HEIGHT);
     }
 	
+	
+	/**
+	 * 
+	 * 
+	 * @param g
+	 */
 	public static void drawBattleBackground(Graphics2D g) {
 		g.drawImage(imageBattleBackground, 0, 0,GRPGParameters.WINDOW_WIDTH,GRPGParameters.WINDOW_HEIGHT, null);
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param g
+	 */
 	public void drawMap(Graphics2D g) {
     	for (int j = 0; j < this.movementHandler.getMap().getHeight(); j++) {
     		for (int i = 0; i < this.movementHandler.getMap().getWidth(); i++) {
@@ -132,6 +153,14 @@ public class Painter extends JPanel {
     	}
     }
 	
+	/**
+	 * 
+	 * 
+	 * @param g
+	 * @param mapWidth
+	 * @param mapHeight
+	 * @param component
+	 */
 	public void drawDebugGrid(Graphics g, int mapWidth, int mapHeight, Component component) {
 		int width = component.getWidth();//mapWidth;
 		int height = component.getHeight();//mapHeight;
@@ -146,6 +175,11 @@ public class Painter extends JPanel {
 		}
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param g
+	 */
 	public void drawPlayer(Graphics g) {
     	/*
 		g.setColor(Color.BLUE);
@@ -160,6 +194,7 @@ public class Painter extends JPanel {
 		g.setColor(Color.BLACK);
 		g.drawRect(xToDraw*GRPGParameters.SCALE,yToDraw*GRPGParameters.SCALE,GRPGParameters.SCALE,GRPGParameters.SCALE);
     }
+	
 	/*
 	public void paint(Graphics g) {
         super.paint(g);       
@@ -174,10 +209,8 @@ public class Painter extends JPanel {
         drawDebugGrid(graphicContext,20,20);
         // g.translate(2,2);
     }
-    */
-	/*
+    
 	public void movePlayer(KeyEvent e) {
-        
         this.movementHandler.movement(e.getKeyChar());
         
         repaint();

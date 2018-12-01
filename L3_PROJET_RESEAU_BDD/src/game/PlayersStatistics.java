@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -8,56 +5,77 @@ package game;
  *
  */
 public class PlayersStatistics {
-	private int nb_fights;
-	private int nb_victories;
-	private int nb_defeats;
+	private int nbFights;
+	private int nbVictories;
+	private int nbDefeats;
 	
+	
+	/**
+	 * Create player's statistics
+	 * 
+	 * @param nbFights
+	 * @param nbWins
+	 * @param nbLoses
+	 */
 	public PlayersStatistics(int nbFights, int nbWins, int nbLoses) {
-		this.nb_fights = nbFights;
-		this.nb_victories = nbWins;
-		this.nb_defeats = nbLoses;
+		this.nbFights = nbFights;
+		this.nbVictories = nbWins;
+		this.nbDefeats = nbLoses;
+	}
+	
+	
+	/**
+	 * Get the fights number of the player
+	 * 
+	 * @return the nbFights
+	 */
+	public int getNbFights() {
+		return nbFights;
 	}
 	
 	/**
-	 * @return the nb_fights
+	 * Get the victories number of the player
+	 * 
+	 * @return the nbVictories
 	 */
-	public int getNb_fights() {
-		return nb_fights;
+	public int getNbVictories() {
+		return nbVictories;
 	}
 	
 	/**
-	 * @return the nb_victories
+	 * Get the defeats number of the player
+	 * 
+	 * @return the nbDefeats
 	 */
-	public int getNb_victories() {
-		return nb_victories;
+	public int getNbDefeats() {
+		return nbDefeats;
 	}
 	
 	/**
-	 * @return the nb_defeats
+	 * Set the fights number of the player
+	 * 
+	 * @param nb_Fights the nbFights to set
 	 */
-	public int getNb_defeats() {
-		return nb_defeats;
+	public void setNbFights(int nbFights) {
+		this.nbFights = nbFights;
 	}
 	
 	/**
-	 * @param nb_fights the nb_fights to set
+	 * Set the victories number of the player
+	 * 
+	 * @param nbVictories the nbVictories to set
 	 */
-	public void setNb_fights(int nb_fights) {
-		this.nb_fights = nb_fights;
+	public void setNbVictories(int nbVictories) {
+		this.nbVictories = nbVictories;
 	}
 	
 	/**
-	 * @param nb_victories the nb_victories to set
+	 * Set the defeats number of the player
+	 * 
+	 * @param nbDefeats the nbDefeats to set
 	 */
-	public void setNb_victories(int nb_victories) {
-		this.nb_victories = nb_victories;
-	}
-	
-	/**
-	 * @param nb_defeats the nb_defeats to set
-	 */
-	public void setNb_defeats(int nb_defeats) {
-		this.nb_defeats = nb_defeats;
+	public void setNbDefeats(int nbDefeats) {
+		this.nbDefeats = nbDefeats;
 	}
 	
 	
@@ -66,7 +84,7 @@ public class PlayersStatistics {
 	 */
 	@Override
 	public String toString() {
-		return "PlayersStatistics [nb_fights=" + nb_fights + ", nb_victories=" + nb_victories + ", nb_defeats="
-				+ nb_defeats + "]";
+		return "PlayersStatistics [nbFights=" + nbFights + ", nbVictories=" + nbVictories + ", nbDefeats="
+				+ nbDefeats + "]";
 	}
 }

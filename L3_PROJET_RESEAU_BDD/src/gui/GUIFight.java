@@ -1,49 +1,32 @@
 package gui;
+
 import gui.GRPGParameters;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.IOException;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 
 import core.VariableRepository;
 import game.Fight;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-
-import javax.swing.JTextArea;
-
 import game.PlayersCharacter;
 import game.EnemyCharacter;
-import javax.swing.JScrollPane;
-
 //import query.FightQuery;
 
-
+/**
+ * @author 
+ *
+ */
 public class GUIFight extends JPanel implements ComponentListener {
-
-	/*	progressBar.setValue( ( int ) playerToUpdate.getPlayerMana() );
-		progressBar.addChangeListener(new ChangeListener() {
-		public void stateChanged(ChangeEvent arg0) {
-			labelProgressBarValue.setText(Integer.valueOf(progressBar.getValue()).toString());
-		}
-});
-*/
-	
 	private static final long serialVersionUID = 1L;
+	
 	private JLabel labelConnexionTitle;	
-
+	private JLabel labelHealthBarPlayer;
+	private JLabel labelHealthBarOpponent;
+	
 	private JButton buttonAttack;
 	private JButton buttonDefense;
 	private JButton buttonObject;
@@ -53,11 +36,19 @@ public class GUIFight extends JPanel implements ComponentListener {
 	private JProgressBar healthBarPlayer;
 	private JProgressBar healthBarOpponent;
 	
-	private JLabel labelHealthBarPlayer;
-	private JLabel labelHealthBarOpponent;
-	
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
+	
+	/*	
+	progressBar.setValue( ( int ) playerToUpdate.getPlayerMana() );
+	 
+	progressBar.addChangeListener(new ChangeListener() {
+		public void stateChanged(ChangeEvent arg0) {
+			labelProgressBarValue.setText(Integer.valueOf(progressBar.getValue()).toString());
+		}
+	});
+	 */
+	
 
 	/**
 	 * Create the panel.
@@ -94,6 +85,9 @@ public class GUIFight extends JPanel implements ComponentListener {
 		initActions();	
 	}
 	
+	/**
+	 * 
+	 */
 	public void checkEndFight() {
 		
 		if ( ((Boolean)VariableRepository.getInstance().searchByName("characterInFight")) == false ) {
@@ -104,6 +98,9 @@ public class GUIFight extends JPanel implements ComponentListener {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	protected void initActions() {
 		buttonAttack.addActionListener(new AttackAction());
 		buttonDefense.addActionListener(new DefenseAction());
@@ -111,6 +108,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 		buttonGiveUp.addActionListener(new GiveUpAction());
 		// buttonPrevious.addActionListener(new PreviousAction());
 	}
+	
 	/*
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
@@ -118,13 +116,17 @@ public class GUIFight extends JPanel implements ComponentListener {
 		}
 	}
 	*/
+	
+	
+	/**
+	 * 
+	 */
 	private class AttackAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			// System.out.println("Attack");
 			try {
 				((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("a", textArea);
 			} catch (IOException | InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -147,6 +149,11 @@ public class GUIFight extends JPanel implements ComponentListener {
 			*/
 		}
 	}
+	
+	
+	/**
+	 * 
+	 */
 	private class DefenseAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			// System.out.println("Defense");
@@ -166,12 +173,21 @@ public class GUIFight extends JPanel implements ComponentListener {
 			checkEndFight();
 		}
 	}
+	
+	
+	/**
+	 * 
+	 */
 	private class ObjectAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class GiveUpAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			//revenir sur l'écran de deplacement(map)
@@ -179,7 +195,10 @@ public class GUIFight extends JPanel implements ComponentListener {
 		}
 	}
 	
-		
+	
+	/**
+	 * 
+	 */
 	public void componentShown(ComponentEvent e) {
         // displayMessage(e.getComponent().getClass().getName() + " --- Shown");
 		System.out.println("testComponentShown");
@@ -194,8 +213,10 @@ public class GUIFight extends JPanel implements ComponentListener {
 		GUIDisplayHandler.updateLabel(labelHealthBarPlayer, ( String.valueOf( ((EnemyCharacter)VariableRepository.getInstance().searchByName("enemy_1")).getHealth() ) ) );
     }
 	
+	/**
+	 * 
+	 */
 	public void initLayout () {
-		
 		labelHealthBarPlayer = new JLabel("0");
 		labelHealthBarPlayer.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		labelHealthBarPlayer.setBounds(962, 375, 39, 28);
@@ -254,19 +275,25 @@ public class GUIFight extends JPanel implements ComponentListener {
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
-		
 	}
 	
+	/**
+	 * 
+	 */
 	public void paint(Graphics g) {
         super.paint(g);       
         Graphics2D g2 = (Graphics2D) g;
         Painter.drawBattleBackground(g2);
     }
 	
+	/**
+	 * 
+	 */
 	public void reset() {
 		
 	}
 
+	
 	@Override
 	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub

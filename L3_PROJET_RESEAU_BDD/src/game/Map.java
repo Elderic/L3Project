@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -19,6 +16,7 @@ public class Map {
 	
 	
 	/**
+	 * Create a map
 	 * 
 	 * @param height
 	 * @param width
@@ -47,20 +45,34 @@ public class Map {
 		this.generateRandomMap();
 	}
 	
+	
 	/**
+	 * Set the character in the map at the given coordinates
 	 * 
-	 * @param positionX (--)
-	 * @param positionY (|)
+	 * @param positionX
+	 * @param positionY
 	 * @param character
 	 */
 	public void setPositionInMap(int positionX, int positionY, char character) {
 		this.map[positionY][positionX]=character;
 	}
 	
+	/**
+	 * Get the character in the map at the given coordinates
+	 * 
+	 * @param positionX
+	 * @param positionY
+	 * 
+	 * @return character in the map at the given coordinates
+	 */
 	public char getPositionInMap(int positionX, int positionY) {
 		return map[positionY][positionX];
 	}
 	
+	/**
+	 * Print the map
+	 * ConsoleMode ONLY!
+	 */
 	public void printMap() {
 		System.out.print("\nMAP:\n");
 		for(int i=-1 ; i<getHeight() ; i++) {
@@ -90,6 +102,9 @@ public class Map {
 	 * STONE / TREE = *
 	 * MONSTER = M
 	 */
+	/**
+	 * Generate the map with random tiles
+	 */
 	private void generateRandomMap() {
 		for(int i=1 ; i<getHeight()-1 ; i++) {
 			for(int j=1 ; j<getWidth()-1 ; j++) {
@@ -113,16 +128,24 @@ public class Map {
 		}
 	}
 	
-	
+	/**
+	 * Return true is the player can move at the given coordinates (if there is no wall, stone, tree), else return false 
+	 * 
+	 * @param positionX
+	 * @param positionY
+	 * 
+	 * @return true or false
+	 */
 	public boolean playerCanMoveHere(int positionX, int positionY) {
 		if(getPositionInMap(positionX, positionY) != '&' && getPositionInMap(positionX, positionY) != '/' && getPositionInMap(positionX, positionY) != '*') {
 			return true;
 		}
 		return false;
 	}
-
 	
 	/**
+	 * Get the height of the map
+	 * 
 	 * @return the height
 	 */
 	public int getHeight() {
@@ -130,6 +153,8 @@ public class Map {
 	}
 
 	/**
+	 * Get the width of the map
+	 * 
 	 * @return the width
 	 */
 	public int getWidth() {
@@ -137,6 +162,8 @@ public class Map {
 	}
 
 	/**
+	 * Get the monster percentage in the map
+	 * 
 	 * @return the monsterPercentage
 	 */
 	public int getMonsterPercentage() {
@@ -144,6 +171,7 @@ public class Map {
 	}
 	
 	/**
+	 * Get the obstacle percentage in the map
 	 * 
 	 * @return the obstaclePercentage
 	 */
@@ -152,6 +180,8 @@ public class Map {
 	}
 
 	/**
+	 * Set the height of the map
+	 * 
 	 * @param height the height to set
 	 */
 	private void setHeight(int height) {
@@ -159,6 +189,8 @@ public class Map {
 	}
 	
 	/**
+	 * Set the width of the map
+	 * 
 	 * @param width the width to set
 	 */
 	private void setWidth(int width) {
@@ -166,6 +198,8 @@ public class Map {
 	}
 	
 	/**
+	 * Set the monster percentage for the map
+	 * 
 	 * @param monsterPercentage the monsterPercentage to set
 	 */
 	public void setMonsterPercentage(int monsterPercentage) {
@@ -173,6 +207,7 @@ public class Map {
 	}
 	
 	/**
+	 * Set the obstacle percentage for the map
 	 * 
 	 * @param obstaclePercentage the obstaclePercentage to set
 	 */

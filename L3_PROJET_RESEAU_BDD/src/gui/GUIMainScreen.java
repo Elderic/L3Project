@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * @author 
+ *
+ */
 public class GUIMainScreen extends JPanel {
 	private static final long serialVersionUID = 7064806528132220998L;
 	
@@ -21,9 +26,16 @@ public class GUIMainScreen extends JPanel {
 	private JButton leaveButton;
 	private JButton charact;
 
-	boolean fightQuery=false;
+	boolean fightQuery = false;
 	
 	
+	/**
+	 * 
+	 * 
+	 * @throws IOException
+	 * @throws UnsupportedAudioFileException
+	 * @throws LineUnavailableException
+	 */
 	public GUIMainScreen () throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		int windowWidth = GRPGParameters.WINDOW_WIDTH;
 		if (windowWidth < 1024 || (windowWidth % 1024 != 0)) {
@@ -37,6 +49,10 @@ public class GUIMainScreen extends JPanel {
 		this.initActions();
 	}
 	
+	
+	/**
+	 * 
+	 */
 	protected void initActions() {
 		signIn.addActionListener(new SignInAction());
 		signUp.addActionListener(new SignUpAction());
@@ -45,18 +61,31 @@ public class GUIMainScreen extends JPanel {
 		charact.addActionListener(new CharactAction() );
 	}
 	
+	
+	/**
+	 *
+	 */
 	private class SignInAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 		}
 	}
 	
+	
+	/**
+	 *
+	 */
 	private class SignUpAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 			PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
 		}
 	}
+	
+	
+	/**
+	 * 
+	 */
 	private class FightAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 					
@@ -66,6 +95,11 @@ public class GUIMainScreen extends JPanel {
 				PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());	
 		}
 	}
+	
+	
+	/**
+	 * 
+	 */
 	private class CharactAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 					
@@ -75,12 +109,22 @@ public class GUIMainScreen extends JPanel {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class LeaveButtonAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 * @throws IOException
+	 */
 	public void initLayout () throws IOException {
 		setLayout(null);
 		

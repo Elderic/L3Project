@@ -1,22 +1,24 @@
 package gui;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
+
+import javax.swing.*;
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import javax.swing.JTextField;
+
 import query.FightQuery;
 import query.SigningInUpQuery;
-import javax.swing.JButton;
 import core.GameVariableRepository;
-import java.awt.Color;
-import java.awt.Dimension;
 
+/**
+ * @author 
+ *
+ */
 public class GUISigningIn extends JPanel {
-
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField loginField;
 	private JPasswordField passwordField;
 
@@ -31,6 +33,7 @@ public class GUISigningIn extends JPanel {
 	boolean status=false;
 	boolean fightQuery=false;
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -47,11 +50,18 @@ public class GUISigningIn extends JPanel {
 		initActions();	
 	}
 	
+	/**
+	 * 
+	 */
 	protected void initActions() {
 		buttonConnexion.addActionListener(new ConnectAction());
 		buttonPrevious.addActionListener(new PreviousAction());
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class ConnectAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			String password=new String(passwordField.getPassword());
@@ -93,13 +103,20 @@ public class GUISigningIn extends JPanel {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
 		}
 	}
 	
-		
+	
+	/**
+	 * 
+	 */
 	public void initLayout () {
 		labelConnexionTitle = new JLabel("Connexion");
 		labelConnexionTitle.setFont(new Font("Tahoma", Font.PLAIN, 38));
@@ -148,6 +165,5 @@ public class GUISigningIn extends JPanel {
 		connectionImpossibleField.setBounds(400,300,304,100);
 		connectionImpossibleField.setVisible(false);
 		add(connectionImpossibleField);
-			
 	}
 }

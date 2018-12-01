@@ -2,24 +2,36 @@ package data;
 
 //import java.util.logging.Logger;
 
-// import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
-import game.EnemyCharacter;
-import game.PlayersCharacter;
-import game.PlayersStatistics;
-import game.PlayersStuff;
+import game.*;
 
+/**
+ * @author 
+ *
+ */
 public class VariableFactory {
+	private static VariableFactory instance = new VariableFactory();
+	//private static Logger logger = LoggerUtility.getLogger(VariableFactory.class);
+	
+	
+	/**
+	 * 
+	 */
 	private VariableFactory() {
 
 	}
 
-	private static VariableFactory instance = new VariableFactory();
-
+	
+	/**
+	 * 
+	 * 
+	 * @return instance
+	 */
 	public static VariableFactory getInstance() {
 		return instance;
 	}
-	// private static Logger logger = LoggerUtility.getLogger(VariableFactory.class);
+	
 	
 	/*
 	public static Constant createConstant(int value) {
@@ -39,22 +51,47 @@ public class VariableFactory {
 	}
 	*/
 	
+	/**
+	 * 
+	 * 
+	 * @param nbFight
+	 * @param nbWin
+	 * @param nbLose
+	 * 
+	 * @return playerStats
+	 */
 	public static Object createPlayersStatistics(int nbFight, int nbWin, int nbLose) {
 		PlayersStatistics playersStats = new PlayersStatistics(nbFight, nbWin, nbLose);
 		return playersStats;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @return playerStuff
+	 */
 	public static Object createPlayersStuff() {
 		PlayersStuff playersStuff = new PlayersStuff();
 		return playersStuff;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param type
+	 * @param name
+	 * @param health
+	 * @param attack
+	 * @param defense
+	 * 
+	 * @return enemy or null
+	 */
 	public static Object createVariable(String type, String name, int health, int attack, int defense) {
 		/*
 		Variable variable = new Variable(name);
 		logger.info("Variable creation with name : " + name);
 		return variable;
-	*/
+		*/
 		switch (type) {
 		case "PlayersCharacter":
 			PlayersCharacter player = new PlayersCharacter(name, health, attack, defense);

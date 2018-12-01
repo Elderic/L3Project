@@ -1,28 +1,22 @@
 package gui;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import query.SigningInUpQuery;
 import core.GameVariableRepository;
 
+/**
+ * @author 
+ *
+ */
 public class GUICharacterCreation extends JPanel {
-
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField nameField;
-
 	private JComboBox<String> genderChoice;
 	private JLabel characterCreationLabel;	
 	private JLabel nameLabel;
@@ -43,6 +37,7 @@ public class GUICharacterCreation extends JPanel {
 
 	private boolean status=false;
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -59,6 +54,13 @@ public class GUICharacterCreation extends JPanel {
 		initActions();	
 	}
 	
+	
+	/**
+	 * Get the ComboBox value
+	 * 
+	 * @param comboBox
+	 * @return gender
+	 */
 	public String returnComboBoxValue(JComboBox<String> comboBox) {
 		String gender =null;
 		if ( comboBox.getSelectedItem() == "Male" ) {
@@ -69,12 +71,19 @@ public class GUICharacterCreation extends JPanel {
 		return gender;
 	}
 
+	/**
+	 * 
+	 */
 	protected void initActions() {
 		buttonPrevious.addActionListener(new PreviousAction());
 		buttonCreate.addActionListener(new CreationAction());
 
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class CreationAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			errorEmptyFieldLabel.setVisible(false);
@@ -97,15 +106,22 @@ public class GUICharacterCreation extends JPanel {
 			}
 		}
 	}
+	
+	
+	/**
+	 * 
+	 */
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
 		}
 	}
 	
-		
+	
+	/**
+	 * 
+	 */
 	public void initLayout () {
-		
 		characterCreationLabel = new JLabel("Character Creation");
 		characterCreationLabel.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		characterCreationLabel.setBounds(400, 22, 635, 76);
@@ -290,7 +306,5 @@ public class GUICharacterCreation extends JPanel {
 				}
 			}
 		});
-		
-	
 	}
 }

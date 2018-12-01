@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -15,6 +12,19 @@ public class PlayersCharacter extends Character {
 	
 	private int level;
 	
+	
+	/**
+	 * Create a player's character
+	 * 
+	 * @param name
+	 * @param health
+	 * @param attack
+	 * @param defense
+	 * @param experience
+	 * @param gender
+	 * @param stuff
+	 * @param stats
+	 */
 	public PlayersCharacter (String name, int health, int attack, int defense, int experience, String gender, PlayersStuff stuff, PlayersStatistics stats) {
 		super(name, health, attack, defense);
 		this.experience = experience;
@@ -23,17 +33,30 @@ public class PlayersCharacter extends Character {
 		this.stats = stats;
 	}
 	
+	/**
+	 * Create a player's character
+	 * 
+	 * @param name
+	 * @param health
+	 * @param attack
+	 * @param defense
+	 */
 	public PlayersCharacter (String name, int health, int attack, int defense) {
 		super(name, health, attack, defense);
 	}
 
+	
+	/**
+	 * Calculate the level of the player with his current experience
+	 */
 	public void calculateLevel() {
 		int level = (int) Math.log(this.experience);
 		this.setLevel(level);
 	}
 
-
 	/**
+	 * Get the experience of the player
+	 * 
 	 * @return the experience
 	 */
 	public int getExperience() {
@@ -41,6 +64,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Get the gender of the player
+	 * 
 	 * @return the gender
 	 */
 	public String getGender() {
@@ -48,6 +73,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Get the stuff of the player
+	 * 
 	 * @return the stuff
 	 */
 	public PlayersStuff getStuff() {
@@ -55,6 +82,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Get the statistics of the player
+	 * 
 	 * @return the stats
 	 */
 	public PlayersStatistics getStats() {
@@ -62,6 +91,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Get the level of the player
+	 * 
 	 * @return the level
 	 */
 	public int getLevel() {
@@ -69,6 +100,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Set the experience of the player
+	 * 
 	 * @param experience the experience to set
 	 */
 	public void setExperience(int experience) {
@@ -76,6 +109,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Set the gender of the player
+	 * 
 	 * @param gender the gender to set
 	 */
 	public void setGender(String gender) {
@@ -83,6 +118,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Set the stuff of the player
+	 * 
 	 * @param stuff the stuff to set
 	 */
 	public void setStuff(PlayersStuff stuff) {
@@ -90,6 +127,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Set the statistics of the player
+	 * 
 	 * @param stats the stats to set
 	 */
 	public void setStats(PlayersStatistics stats) {
@@ -97,6 +136,8 @@ public class PlayersCharacter extends Character {
 	}
 
 	/**
+	 * Set the level of the player
+	 * 
 	 * @param level the level to set
 	 */
 	public void setLevel(int level) {

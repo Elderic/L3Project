@@ -1,10 +1,12 @@
 package gui;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,15 +14,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
 import query.SigningInUpQuery;
 import javax.swing.JButton;
 
-
+/**
+ * @author 
+ *
+ */
 public class GUISigningUp extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -40,6 +40,7 @@ public class GUISigningUp extends JPanel {
 	JButton buttonPrevious;
 	boolean status;
 	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -56,11 +57,19 @@ public class GUISigningUp extends JPanel {
 		initActions();	
 	}
 	
+	
+	/**
+	 * 
+	 */
 	protected void initActions() {
 		buttonSignUp.addActionListener(new ConnectAction());
 		buttonPrevious.addActionListener(new PreviousAction());
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class ConnectAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			String password1=new String(passwordField.getPassword());
@@ -102,6 +111,10 @@ public class GUISigningUp extends JPanel {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
 			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
@@ -109,7 +122,10 @@ public class GUISigningUp extends JPanel {
 		}
 	}
 	
-		
+	
+	/**
+	 * 
+	 */
 	public void initLayout () {
 		labelRegistrationTitle = new JLabel("Registration");
 		labelRegistrationTitle.setFont(new Font("Tahoma", Font.PLAIN, 38));

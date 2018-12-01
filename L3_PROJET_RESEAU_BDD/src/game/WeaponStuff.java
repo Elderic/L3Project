@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -11,8 +8,9 @@ public class WeaponStuff extends Stuff {
 	private int damage;
 
 	
-	
 	/**
+	 * Get the damage of the weapon
+	 * 
 	 * @return the damage
 	 */
 	public int getDamage() {
@@ -20,6 +18,8 @@ public class WeaponStuff extends Stuff {
 	}
 
 	/**
+	 * Set the damage of the weapon
+	 * 
 	 * @param damage the damage to set
 	 */
 	public void setDamage(int damage) {
