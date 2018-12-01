@@ -127,7 +127,7 @@ public class Stuff {
 	 */
 	@Override
 	public String toString() {
-		return "Stuff [name=" + name + ", type=" + type + ", rarity=" + rarity + ", description=" + description 
+		return "Reward : "+ name + ", type=" + type + ", rarity=" + rarity + ", description=" + description 
 				+ ", attack=" +attack+", defense="+defense+"]";
 	}
 }

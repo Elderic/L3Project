@@ -137,8 +137,7 @@ public class Fight {
 				// VariableRepository.getInstance().modify("characterInFight", false);
 				// VariableRepository.getInstance().searchByName("characterInFight")
 				
-				//deplacer plus bas
-				//VariableRepository.getInstance().register("characterInFight", false);
+				VariableRepository.getInstance().register("characterInFight", false);
 				
 				// VariableRepository.getInstance().removeByName("enemy_1");
 				System.out.println("Combat termin� !");
@@ -163,11 +162,9 @@ public class Fight {
 					GUIDisplayHandler.displayAppendOnTextArea(textArea,"perdu");
 					Thread.sleep(3000);*/
 					//resultQuery vaudra null, afficher message sur panel au joueur
-					//System.out.println(resultQuery.toString());
-
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
 				} 
-				VariableRepository.getInstance().register("characterInFight", false);
+				//VariableRepository.getInstance().register("characterInFight", false);
 
 			}
 		}
