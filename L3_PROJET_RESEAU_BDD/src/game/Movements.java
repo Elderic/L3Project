@@ -2,6 +2,8 @@ package game;
 
 import java.io.IOException;
 
+import query.FightQuery;
+
 import core.VariableRepository;
 import data.VariableFactory;
 import game.Map;
@@ -16,7 +18,7 @@ public class Movements {
 	private Map map; //INITIALISER DANS CONSTRUCTEUR
 	
 	
-	// On va créer un joueur ici
+	// On va crï¿½er un joueur ici
 	/**
 	 * Create Movements, to move the player on the map
 	 * 

@@ -17,9 +17,17 @@ public class GUIMainWindow extends JFrame {
 	final static String STARTINGPANEL= "RPG - STARTING PANEL";
 	final static String GAMEPANEL = "RPG - GAME PANEL";
 	final static String FIGHTPANEL = "RPG - FIGHT PANEL";
+	final static String SIGNUPPANEL = "RPG - SIGN UP PANEL";
+	final static String SIGNINPANEL = "RPG - SIGN IN PANEL";
+	final static String CHARACTERCREATIONPANEL = "RPG - CHARACTER CREATION PANEL";
+
 	private JPanel panelsContainer;
 	private JPanel startingPanel;
 	private JPanel fightPanel;
+	private JPanel characterCreationPanel;
+	private JPanel signInPanel;
+	private JPanel signUpPanel;
+
 	private GUIGame gamePanel;
 	private JButton startButton;
 	private CardLayout cardLayout;
@@ -71,7 +79,10 @@ public class GUIMainWindow extends JFrame {
 		startingPanel = new JPanel();
 		gamePanel = new GUIGame();
 		fightPanel = new GUIFight();
-		
+		//characterCreationPanel = new GUICharacterCreation();
+		//signInPanel = new GUISigningIn();
+		//signUpPanel = new GUISigningUp();
+
 		// startingPanel.addKeyListener(new GUIGame());
 		startingPanel.setFocusable(true);
         
@@ -88,7 +99,10 @@ public class GUIMainWindow extends JFrame {
 		panelsContainer.add(startingPanel, STARTINGPANEL);
 		panelsContainer.add(gamePanel, GAMEPANEL);
 		panelsContainer.add(fightPanel, FIGHTPANEL);
-		
+		//panelsContainer.add(characterCreationPanel, CHARACTERCREATIONPANEL);
+		//panelsContainer.add(signInPanel, SIGNINPANEL);
+		//panelsContainer.add(signUpPanel, SIGNUPPANEL);
+
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

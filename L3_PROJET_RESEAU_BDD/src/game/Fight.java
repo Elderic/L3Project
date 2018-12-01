@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.JTextArea;
 
+import query.FightQuery;
+
 import core.VariableRepository;
 import data.VariableFactory;
 import gui.GUIDisplayHandler;
@@ -27,7 +29,7 @@ public class Fight {
 	 */
 	public Fight () {
 		// Se garder la possibilitï¿½ de crï¿½er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
-		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
+		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Crï¿½ature du Malin", 20, 3, 2);
 		VariableRepository.getInstance().register("enemy_1", enemyMonster);
 				
 		this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
@@ -60,8 +62,8 @@ public class Fight {
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		*/
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Début du combat !");
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous défendre pendant le tour ennemi (d).");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Dï¿½but du combat !");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous dï¿½fendre pendant le tour ennemi (d).");
 	}
 	
 	/**
@@ -97,7 +99,7 @@ public class Fight {
 			 
 			if(parameter.equals("a")) {
 				if(enemyIsDefending) {
-					int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
+				int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
 					if(damage>0) {
 						enemyHealth -= damage;
 						// this.enemy.setHealth(enemyHealth);
@@ -134,7 +136,10 @@ public class Fight {
 			if ( enemyHealth <= 0 || playerHealth <= 0 ) {
 				// VariableRepository.getInstance().modify("characterInFight", false);
 				// VariableRepository.getInstance().searchByName("characterInFight")
-				VariableRepository.getInstance().register("characterInFight", false);
+				
+				//deplacer plus bas
+				//VariableRepository.getInstance().register("characterInFight", false);
+				
 				// VariableRepository.getInstance().removeByName("enemy_1");
 				System.out.println("Combat terminï¿½ !");
 				if(enemyHealth>=0) {
@@ -144,7 +149,10 @@ public class Fight {
 /****************requete****************************/
 					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 					Stuff resultQuery=FightQuery.endFightQuery("victory", 10, enemy.getRarity());					
-					System.out.println(resultQuery.toString());*/
+					System.out.println(resultQuery.toString());
+					GUIDisplayHandler.displayAppendOnTextArea(textArea,resultQuery.toString());
+					Thread.sleep(3000);*/
+					//afficher info loot sur panel
 				}
 				else {
 					System.out.println("Dommage, vous avez perdu.");
@@ -152,10 +160,15 @@ public class Fight {
 /****************requete****************************/
 					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 					Stuff resultQuery=FightQuery.endFightQuery("defeat", 5, enemy.getRarity());
-					System.out.println(resultQuery.toString());*/
+					GUIDisplayHandler.displayAppendOnTextArea(textArea,"perdu");
+					Thread.sleep(3000);*/
+					//resultQuery vaudra null, afficher message sur panel au joueur
+					//System.out.println(resultQuery.toString());
 
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
 				} 
+				VariableRepository.getInstance().register("characterInFight", false);
+
 			}
 		}
 	}

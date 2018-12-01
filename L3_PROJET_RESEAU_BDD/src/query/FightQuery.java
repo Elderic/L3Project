@@ -14,7 +14,7 @@ import core.VariableRepository;
 import data.VariableFactory;
 
 /**
- * @author 
+ * @author TOULAIN Timothe
  *
  */
 public class FightQuery {
@@ -23,7 +23,7 @@ public class FightQuery {
 	
 	
 	/**
-	 * 
+	 * retrieve player and enemy data before the fight
 	 * 
 	 * @return true or false
 	 * 
@@ -125,7 +125,7 @@ public class FightQuery {
    	}
 	
 	/**
-	 * 
+	 * update player's stats and get his reward according to the result of the fight
 	 * 
 	 * @param resultFight
 	 * @param experienceWon
@@ -161,7 +161,7 @@ public class FightQuery {
             System.out.println ("etape1") ;
             
         	//flux_sortie.println(GameVariableRepository.getInstance().getPlayerId()) ;
-            flux_sortie.println("player00015");
+            flux_sortie.println("player00016");
             
             chaine = flux_entree.readLine () ;
             if(chaine.equals("id received")){
@@ -179,28 +179,36 @@ public class FightQuery {
                     		System.out.println("ok rarity");
                         	chaine = flux_entree.readLine () ;   
                     		if(chaine.equals("update completed")){
-                    			System.out.println("donnees updater, pret a recevoir loot");
-                    			chaine = flux_entree.readLine();
-                    			String[] splitLoot=chaine.split("/");
-                    			String nameLoot=splitLoot[0];
-                    			String typeLoot=splitLoot[1];
-                    			String rarityLoot=splitLoot[2];
-                    			String descriptionLoot=splitLoot[3];
-                    			String attackLoot=splitLoot[4];
-                    			String defenseLoot=splitLoot[5];
-                    			Stuff stuff=new Stuff();
-                    			stuff.setName(nameLoot);
-                    			stuff.setType(typeLoot);
-                    			stuff.setRarity(rarityLoot);
-                    			stuff.setDescription(descriptionLoot);
-                    			stuff.setAttack(Integer.parseInt(attackLoot));
-                    			stuff.setDefense(Integer.parseInt(defenseLoot));
+                    			if(resultFight.equals("victory")){
+                    				System.out.println("donnees updater, pret a recevoir loot");
+                    				chaine = flux_entree.readLine();
+                    				String[] splitLoot=chaine.split("/");
+                    				String nameLoot=splitLoot[0];
+                    				String typeLoot=splitLoot[1];
+                    				String rarityLoot=splitLoot[2];
+                    				String descriptionLoot=splitLoot[3];
+                    				String attackLoot=splitLoot[4];
+                    				String defenseLoot=splitLoot[5];
+                    				Stuff stuff=new Stuff();
+                    				stuff.setName(nameLoot);
+                    				stuff.setType(typeLoot);
+                    				stuff.setRarity(rarityLoot);
+                    				stuff.setDescription(descriptionLoot);
+                    				stuff.setAttack(Integer.parseInt(attackLoot));
+                    				stuff.setDefense(Integer.parseInt(defenseLoot));
                     			
-                    			for(int i=0;i<6;i++){
-                    				System.out.println(splitLoot[i]);
+                    				for(int i=0;i<6;i++){
+                    					System.out.println(splitLoot[i]);
+                    				}
+                    				closeConnection(flux_sortie,flux_entree,socket);
+                        			return stuff;
                     			}
-                    			closeConnection(flux_sortie,flux_entree,socket);
-                    			return stuff;
+                    			else{
+                					System.out.println("pas de loot");
+                    				closeConnection(flux_sortie,flux_entree,socket);
+                        			return null;
+                    			}
+                    			
                     		}
                     		else {
                     			System.out.println("erreur update");
@@ -220,8 +228,7 @@ public class FightQuery {
 	}
 	
 	/**
-	 * 
-	 * 
+	 * close the connection with the server
 	 * @param flux_sortie
 	 * @param flux_entree
 	 * @param socket

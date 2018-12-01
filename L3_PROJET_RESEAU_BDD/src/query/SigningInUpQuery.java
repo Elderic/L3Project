@@ -8,13 +8,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * @author 
+ * @author TOULAIN Timothe
  *
  */
 public class SigningInUpQuery {
 	/**
 	 * 
-	 * 
+	 * this method permits to sign in or sign up
 	 * @param typeQuery
 	 * @param login
 	 * @param password
@@ -105,7 +105,7 @@ public class SigningInUpQuery {
 	
 	/**
 	 * 
-	 * 
+	 * create a character for the player
 	 * @param playerId
 	 * @param gender
 	 * @param name
@@ -161,7 +161,7 @@ public class SigningInUpQuery {
 	
 	/**
 	 * 
-	 * 
+	 * close the connection with the server
 	 * @param flux_sortie
 	 * @param flux_entree
 	 * @param socket
