@@ -104,12 +104,12 @@ public class GUIGame extends JPanel {
 	}
 
 	public void initGameVariables() throws IOException {
-		int width = 20;
-		int height = 10;
+		int width = 25;
+		int height = 20;
 		int monsterPercentage = 10;
 		int obstaclePercentage = 20;
-		int playerXCords = 5;
-		int playerYCords = 5;
+		int playerXCords = 12;
+		int playerYCords = 9;
 	
 		movement = new Movements(height, width, monsterPercentage, obstaclePercentage,playerXCords,playerYCords);
 		graphicPainter = new Painter(movement);

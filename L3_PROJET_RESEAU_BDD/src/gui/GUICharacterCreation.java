@@ -23,7 +23,7 @@ public class GUICharacterCreation extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 
-	private JComboBox genderChoice;
+	private JComboBox<String> genderChoice;
 	private JLabel characterCreationLabel;	
 	private JLabel nameLabel;
 	private JLabel genderLabel;
@@ -59,7 +59,7 @@ public class GUICharacterCreation extends JPanel {
 		initActions();	
 	}
 	
-	public String returnComboBoxValue(JComboBox comboBox) {
+	public String returnComboBoxValue(JComboBox<String> comboBox) {
 		String gender =null;
 		if ( comboBox.getSelectedItem() == "Male" ) {
 			gender = "male";
@@ -87,10 +87,8 @@ public class GUICharacterCreation extends JPanel {
 					
 					System.out.println("has been created: "+hasBeenCreated);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -121,8 +119,8 @@ public class GUICharacterCreation extends JPanel {
 		buttonCreate.setBounds(410, 622, 104, 23);
 		add(buttonCreate);
 		
-		genderChoice = new JComboBox();
-		genderChoice.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
+		genderChoice = new JComboBox<String>();
+		genderChoice.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
 		genderChoice.setBounds(400, 276, 135, 20);
 		add(genderChoice);
 		

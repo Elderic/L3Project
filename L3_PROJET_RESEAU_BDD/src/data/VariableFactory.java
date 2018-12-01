@@ -1,7 +1,5 @@
 package data;
 
-import core.VariableRepository;
-
 //import java.util.logging.Logger;
 
 // import org.apache.log4j.Logger;

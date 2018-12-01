@@ -39,6 +39,7 @@ public class GUISigningUp extends JPanel {
 	JButton buttonSignUp;
 	JButton buttonPrevious;
 	boolean status;
+	
 	/**
 	 * Create the panel.
 	 */

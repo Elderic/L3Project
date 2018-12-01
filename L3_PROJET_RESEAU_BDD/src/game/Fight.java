@@ -26,7 +26,7 @@ public class Fight {
 	
 	public Fight () {
 		// Se garder la possibilitï¿½ de crï¿½er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
-		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Crï¿½ature du Malin", 20, 3, 2);
+		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
 		VariableRepository.getInstance().register("enemy_1", enemyMonster);
 				
 		this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");

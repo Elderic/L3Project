@@ -1,4 +1,5 @@
 package query;
+
 import game.EnemyCharacter;
 import game.PlayersCharacter;
 import game.Stuff;
