@@ -54,7 +54,7 @@ public class PlayersStatistics {
 	/**
 	 * Set the fights number of the player
 	 * 
-	 * @param nb_Fights the nbFights to set
+	 * @param nbFights the nbFights to set
 	 */
 	public void setNbFights(int nbFights) {
 		this.nbFights = nbFights;

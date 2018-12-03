@@ -18,7 +18,7 @@ import game.EnemyCharacter;
 //import query.FightQuery;
 
 /**
- * @author 
+ * @author GILLES Anne-Sophie
  *
  */
 public class GUIFight extends JPanel implements ComponentListener {

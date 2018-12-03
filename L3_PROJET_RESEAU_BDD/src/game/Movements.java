@@ -79,7 +79,7 @@ public class Movements {
 		if(map.getPositionInMap(currentPlayerPositionX, currentPlayerPositionY)=='M') {
 			// System.out.println("Valeur de characterInFight avant modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 			VariableRepository.getInstance().register("characterInFight", true);
-			// ((PlayersCharacter) VariableRepository.getInstance().searchByName("PlayersCharacter")).getStats().setNb_fights();;
+			// ((PlayersCharacter) VariableRepository.getInstance().searchByName("PlayersCharacter")).getStats().setNbFights();;
 			// System.out.println("Valeur de characterInFight apr�s modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 
 /****************requete*****************/			

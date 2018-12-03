@@ -32,42 +32,42 @@ public class FightQuery {
 	 */
 	public static boolean FightQuery() throws IOException, InterruptedException {
 		Socket socket = null ;
-		PrintWriter flux_sortie = null ;
-		BufferedReader flux_entree = null ;
-		String chaine ;
+		PrintWriter outputFlux = null ;
+		BufferedReader inputFlux = null ;
+		String chain ;
 		
 		try {
 			// deuxieme argument : le numero de port que l'on contacte
 			socket = new Socket ("127.0.0.1", 5000) ;
-			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
-			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
+			outputFlux = new PrintWriter (socket.getOutputStream (), true) ;
+			inputFlux = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
 		} 
 		catch (UnknownHostException e) {
-			System.err.println ("Hote inconnu") ;
-            closeConnection(flux_sortie,flux_entree,socket);
+			System.err.println ("Unknown host") ;
+            closeConnection(outputFlux,inputFlux,socket);
             return false;
 		} 
 	
-        flux_sortie.println("fightSolo");
-        chaine = flux_entree.readLine () ;
-        System.out.println ("Le serveur m'a repondu : " + chaine) ;
-        if(chaine.equals("ready to receive player id")){
+        outputFlux.println("fightSolo");
+        chain = inputFlux.readLine () ;
+        System.out.println ("Server says: " + chain) ;
+        if(chain.equals("ready to receive player id")){
 
-            //flux_sortie.println (GameVariableRepository.getInstance().getPlayerId()) ;
-        	flux_sortie.println("player00015");
+            //outputFlux.println (GameVariableRepository.getInstance().getPlayerId()) ;
+        	outputFlux.println("player00015");
         	
-            System.out.println("id envoyer");
-            chaine = flux_entree.readLine () ;   
+            System.out.println("id sent");
+            chain = inputFlux.readLine () ;   
         }
-        if(chaine.equals("sending player data")){
+        if(chain.equals("sending player data")){
 			System.out.println("we're about to receive the player data");  
-			chaine = flux_entree.readLine () ;   
-			System.out.println("here are the data "+chaine);  
+			chain = inputFlux.readLine () ;   
+			System.out.println("here are the data "+chain);  
 			/**the data are organized like:
 			 *name/health/attack/defense
 			 *so we split the string using the separator "/"
 			 **/
-			String[] split=chaine.split("/");
+			String[] split=chain.split("/");
 			String name=split[0];
 			String health=split[1];
 			String attack=split[2];
@@ -78,12 +78,12 @@ public class FightQuery {
 			player.setAttack(Integer.parseInt(attack));
 			player.setDefense(Integer.parseInt(defense));
 			
-			chaine = flux_entree.readLine () ;   
-			if(chaine.equals("sending enemy data")){
+			chain = inputFlux.readLine () ;   
+			if(chain.equals("sending enemy data")){
 			    System.out.println("we're about to receive the enemy data");  
-			    chaine = flux_entree.readLine () ;   
-			    System.out.println("here are the data "+chaine);  
-			    String[] splitEnemy=chaine.split("/");
+			    chain = inputFlux.readLine () ;   
+			    System.out.println("here are the data "+chain);  
+			    String[] splitEnemy=chain.split("/");
 			    String nameEnemy=splitEnemy[0];
 			    String healthEnemy=splitEnemy[1];
 			    String typeEnemy=splitEnemy[2];
@@ -101,7 +101,7 @@ public class FightQuery {
 			    enemy.setAttack(Integer.parseInt(attackEnemy));
 			    enemy.setDefense(Integer.parseInt(defenseEnemy));*/
 			    
-				System.out.println("info enemy:");
+				System.out.println("enemy info:");
 			
 			    for(int i=0;i<=5;i++){
 			    	System.out.println(splitEnemy[i]);
@@ -109,17 +109,17 @@ public class FightQuery {
 			}
 			else{
 				System.out.println("error");
-			    System.out.println(chaine);
-			    closeConnection(flux_sortie,flux_entree,socket);
+			    System.out.println(chain);
+			    closeConnection(outputFlux,inputFlux,socket);
 			    return false;
 			}
-			closeConnection(flux_sortie,flux_entree,socket);
+			closeConnection(outputFlux,inputFlux,socket);
 			return true;
         }
         else{
             System.out.println("error, no data retrieved");
-            System.out.println(chaine);
-            closeConnection(flux_sortie,flux_entree,socket);
+            System.out.println(chain);
+            closeConnection(outputFlux,inputFlux,socket);
             return false;
         }
    	}
@@ -138,51 +138,51 @@ public class FightQuery {
 	 */
 	public static Stuff endFightQuery(String resultFight, int experienceWon, String rarity) throws IOException, InterruptedException {
 		Socket socket = null ;
-		PrintWriter flux_sortie = null ;
-		BufferedReader flux_entree = null ;
-		String chaine ;
+		PrintWriter outputFlux = null ;
+		BufferedReader inputFlux = null ;
+		String chain ;
 		
 		try {
 			// deuxieme argument : le numero de port que l'on contacte
 			socket = new Socket ("127.0.0.1", 5000) ;
-			flux_sortie = new PrintWriter (socket.getOutputStream (), true) ;
-			flux_entree = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
+			outputFlux = new PrintWriter (socket.getOutputStream (), true) ;
+			inputFlux = new BufferedReader (new InputStreamReader (socket.getInputStream ())) ;
 		} 
 		catch (UnknownHostException e) {
-			System.err.println ("Hote inconnu") ;
-            closeConnection(flux_sortie,flux_entree,socket);
+			System.err.println ("Unknown host") ;
+            closeConnection(outputFlux,inputFlux,socket);
 
             return null;
 		} 
-        flux_sortie.println("endFight");
-        chaine = flux_entree.readLine () ;
-        System.out.println ("Le serveur m'a repondu : " + chaine) ;
-        if(chaine.equals("ready to update data")){
-            System.out.println ("etape1") ;
+        outputFlux.println("endFight");
+        chain = inputFlux.readLine () ;
+        System.out.println ("Server says: " + chain) ;
+        if(chain.equals("ready to update data")){
+            System.out.println ("step1") ;
             
-        	//flux_sortie.println(GameVariableRepository.getInstance().getPlayerId()) ;
-            flux_sortie.println("player00016");
+        	//outputFlux.println(GameVariableRepository.getInstance().getPlayerId()) ;
+            outputFlux.println("player00016");
             
-            chaine = flux_entree.readLine () ;
-            if(chaine.equals("id received")){
-            	flux_sortie.println(experienceWon) ;
+            chain = inputFlux.readLine () ;
+            if(chain.equals("id received")){
+            	outputFlux.println(experienceWon) ;
             	System.out.println("expe "+experienceWon);
-                chaine = flux_entree.readLine () ;
-                if(chaine.equals("experience received")){
-                	flux_sortie.println(resultFight) ;//victory or defeat         	
+                chain = inputFlux.readLine () ;
+                if(chain.equals("experience received")){
+                	outputFlux.println(resultFight) ;//victory or defeat         	
                 	System.out.println("result fight "+resultFight);
-                	chaine = flux_entree.readLine () ;   
-                	if(chaine.equals("result received")){
-                    	flux_sortie.println(rarity) ;//common or elite or boss         	
-                    	chaine = flux_entree.readLine () ;   
-                    	if(chaine.equals("enemy rarity received")){
+                	chain = inputFlux.readLine () ;   
+                	if(chain.equals("result received")){
+                    	outputFlux.println(rarity) ;//common or elite or boss         	
+                    	chain = inputFlux.readLine () ;   
+                    	if(chain.equals("enemy rarity received")){
                     		System.out.println("ok rarity");
-                        	chaine = flux_entree.readLine () ;   
-                    		if(chaine.equals("update completed")){
+                        	chain = inputFlux.readLine () ;   
+                    		if(chain.equals("update completed")){
                     			if(resultFight.equals("victory")){
-                    				System.out.println("donnees updater, pret a recevoir loot");
-                    				chaine = flux_entree.readLine();
-                    				String[] splitLoot=chaine.split("/");
+                    				System.out.println("data update, ready to receive loot");
+                    				chain = inputFlux.readLine();
+                    				String[] splitLoot=chain.split("/");
                     				String nameLoot=splitLoot[0];
                     				String typeLoot=splitLoot[1];
                     				String rarityLoot=splitLoot[2];
@@ -200,19 +200,19 @@ public class FightQuery {
                     				for(int i=0;i<6;i++){
                     					System.out.println(splitLoot[i]);
                     				}
-                    				closeConnection(flux_sortie,flux_entree,socket);
+                    				closeConnection(outputFlux,inputFlux,socket);
                         			return stuff;
                     			}
                     			else{
-                					System.out.println("pas de loot");
-                    				closeConnection(flux_sortie,flux_entree,socket);
+                					System.out.println("No loot");
+                    				closeConnection(outputFlux,inputFlux,socket);
                         			return null;
                     			}
                     			
                     		}
                     		else {
-                    			System.out.println("erreur update");
-                    			closeConnection(flux_sortie,flux_entree,socket);
+                    			System.out.println("update error");
+                    			closeConnection(outputFlux,inputFlux,socket);
                     			return null;
                     		}  
                     	}
@@ -221,23 +221,24 @@ public class FightQuery {
             }
         }
         else{
-            closeConnection(flux_sortie,flux_entree,socket);
+            closeConnection(outputFlux,inputFlux,socket);
         	return null;
         }
+        closeConnection(outputFlux,inputFlux,socket);
 		return null;
 	}
 	
 	/**
 	 * close the connection with the server
-	 * @param flux_sortie
-	 * @param flux_entree
+	 * @param outputFlux
+	 * @param inputFlux
 	 * @param socket
 	 * 
 	 * @throws IOException
 	 */
-	public static void closeConnection(PrintWriter flux_sortie,BufferedReader flux_entree, Socket socket) throws IOException{
-	 	flux_sortie.close () ;
-        flux_entree.close () ;
+	public static void closeConnection(PrintWriter outputFlux, BufferedReader inputFlux, Socket socket) throws IOException{
+	 	outputFlux.close () ;
+        inputFlux.close () ;
         socket.close () ;
 	}
 }

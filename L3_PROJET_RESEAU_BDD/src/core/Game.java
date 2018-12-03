@@ -60,18 +60,18 @@ public class Game {
 		
 		JButton btnTest = new JButton("TEST");
 		
-		JPanel PANEL_1 = new JPanel();
+		JPanel panel1 = new JPanel();
 		
-		JLabel LABEL_PANEL_1 = new JLabel("PANEL 1");
-		PANEL_1.add(LABEL_PANEL_1);
-		PANEL_1.add(btnTest);
-		cardsContainer.add(PANEL_1, "panel_1");
+		JLabel labelPanel1 = new JLabel("PANEL 1");
+		panel1.add(labelPanel1);
+		panel1.add(btnTest);
+		cardsContainer.add(panel1, "panel_1");
 		
-		JPanel PANEL_2 = new JPanel();
-		cardsContainer.add(PANEL_2, "panel_2");
+		JPanel panel2 = new JPanel();
+		cardsContainer.add(panel2, "panel_2");
 		
 		JLabel lblPanel = new JLabel("PANEL 2");
-		PANEL_2.add(lblPanel);
+		panel2.add(lblPanel);
 		
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

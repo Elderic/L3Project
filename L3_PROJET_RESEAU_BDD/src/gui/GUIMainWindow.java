@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * @author 
+ * @author GILLES Anne-Sophie 
  *
  */
 public class GUIMainWindow extends JFrame {
@@ -120,27 +120,6 @@ public class GUIMainWindow extends JFrame {
 		JMenuItem mntmCombatreUnAutre = new JMenuItem("Fight another player");
 		mnMultijoueurs.add(mntmCombatreUnAutre);
 		
-		// getContentPane().setLayout(null);
-		/*
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Menu");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmQuitter = new JMenuItem("Quitter");
-		mnNewMenu.add(mntmQuitter);
-		
-		JMenu mnMultijoueurs = new JMenu("Multi-joueurs");
-		menuBar.add(mnMultijoueurs);
-		
-		JMenuItem mntmCombatreUnAutre = new JMenuItem("Combatre un autre joueur");
-		mnMultijoueurs.add(mntmCombatreUnAutre);
-		getContentPane().setLayout(null);
-		*/
-		
-		// JPanel panelMap = new JPanel();
-		// panelMap.setBounds(10, 11, 474, 428);
 		getContentPane().add(panelsContainer);
 		
 		// panelMap.setBorder(BorderFactory.createLineBorder(Color.black));
