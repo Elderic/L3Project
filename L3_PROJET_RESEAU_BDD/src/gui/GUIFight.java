@@ -109,7 +109,6 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 */
 	private class AttackAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
-			// System.out.println("Attack");
 			try {
 				((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("a", textArea);
 			} catch (IOException | InterruptedException e1) {
@@ -129,7 +128,6 @@ public class GUIFight extends JPanel implements ComponentListener {
 				System.out.println("query ="+testFightQuery);
 				System.out.println(GameVariableRepository.getInstance().getPlayerName());
 			} catch (IOException | InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			*/
@@ -142,11 +140,9 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 */
 	private class DefenseAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
-			// System.out.println("Defense");
 			try {
 				((Fight) VariableRepository.getInstance().searchByName("fightManager")).inFight("d", textArea);
 			} catch (IOException | InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -166,9 +162,8 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 */
 	public void componentShown(ComponentEvent e) {
         // displayMessage(e.getComponent().getClass().getName() + " --- Shown");
-		System.out.println("testComponentShown");
 		Fight fight = new Fight();
-		VariableRepository.getInstance().register("fightManager", fight);;
+		VariableRepository.getInstance().register("fightManager", fight);
 		fight.initFight(textArea);
 		
 		GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((PlayersCharacter)VariableRepository.getInstance().searchByName("player1")).getHealth() );
@@ -249,19 +244,16 @@ public class GUIFight extends JPanel implements ComponentListener {
 	
 	@Override
 	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }

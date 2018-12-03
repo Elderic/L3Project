@@ -63,8 +63,6 @@ public class GUIGame extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent actionEvt) {
-			// System.out.println(actionEvt.getActionCommand() + " pressed");
-			System.out.println(actionEvt.getActionCommand());
 			char c = actionEvt.getActionCommand().charAt(0);
 	        try {
 				movement.movement(c);
@@ -79,8 +77,6 @@ public class GUIGame extends JPanel {
 	        	CardLayout layout = (CardLayout) parent.getLayout();
 	        	layout.next(parent);
 	        }
-	        System.out.println("testRepaintAfter");
-	        
 		}
 	}
 	

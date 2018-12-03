@@ -76,7 +76,6 @@ public class GUISigningIn extends JPanel {
 							System.out.println("query ="+fightQuery);
 							System.out.println(GameVariableRepository.getInstance().getPlayerName());
 						} catch (IOException | InterruptedException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}		
 						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
@@ -88,10 +87,8 @@ public class GUISigningIn extends JPanel {
 						connectionImpossibleField.setVisible(true);
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 		

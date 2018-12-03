@@ -1,11 +1,8 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * @author GILLES Anne-Sophie 
@@ -56,7 +53,6 @@ public class GUIMainWindow extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.next(panelsContainer);
-				System.out.println("test");
 			}
 		});
 	}
@@ -65,7 +61,8 @@ public class GUIMainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIMainWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 		// panelsContainer = new JPanel();
 		// panelsContainer.setBorder(new EmptyBorder(5, 5, 5, 5));
 		// panelsContainer.setLayout(new BorderLayout(0, 0));
@@ -107,7 +104,6 @@ public class GUIMainWindow extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		// ((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, this)).setJMenuBar(menuBar);
-		// System.out.println(this.getRootPane());
 		JMenu mnNewMenu = new JMenu("Menu");
 		menuBar.add(mnNewMenu);
 		
@@ -131,9 +127,27 @@ public class GUIMainWindow extends JFrame {
 		try {
 			initGameVariables();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		*/
+        
+        
+        mntmQuitter.addActionListener(new ActionListener () {
+        	public void actionPerformed (ActionEvent arg0) {
+        		int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program Message Box",JOptionPane.YES_NO_OPTION);
+			    if (confirmed == JOptionPane.YES_OPTION) {
+			    	System.exit(0);
+			    }
+        	}
+        });
+        
+        addWindowListener(new WindowAdapter() {
+			  public void windowClosing(WindowEvent e) {
+				    int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program Message Box",JOptionPane.YES_NO_OPTION);
+				    if (confirmed == JOptionPane.YES_OPTION) {
+				    	System.exit(0);
+				    }
+			  }
+		});
 	}
 }

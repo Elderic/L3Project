@@ -56,8 +56,8 @@ public class Fight {
 	 * @param textArea
 	 */
 	public void initFight(JTextArea textArea) {
-		//IA A FAIRE
-		/*
+		/*IA A FAIRE
+		
 		int playerHealth = 20;	//A RECUP
 		int enemyHealth = 20;	//A RECUP
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
@@ -77,11 +77,7 @@ public class Fight {
 	 * @throws InterruptedException
 	 */
 	public void inFight(String parameter, JTextArea textArea) throws IOException, InterruptedException {
-		// int playerHealth = player.getHealth();
-		// int enemyHealth = enemy.getHealth();
-		// Scanner read = new Scanner(System.in);
 		if (playerHealth > 0 && enemyHealth > 0) {
-			// String tmp = read.nextLine();
 			
 			int random = (int) (Math.random()*100);
 			if(random<50) {
@@ -134,7 +130,6 @@ public class Fight {
 				
 				// VariableRepository.getInstance().removeByName("enemy_1");
 				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Fight is over !");
-				System.out.println("Fight is over !");
 				if(playerHealth>=0) {
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Congratulations, you won.");
