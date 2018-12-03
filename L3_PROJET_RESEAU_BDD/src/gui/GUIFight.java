@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import core.VariableRepository;
 import game.Fight;
@@ -29,9 +30,6 @@ public class GUIFight extends JPanel implements ComponentListener {
 	
 	private JButton buttonAttack;
 	private JButton buttonDefense;
-	private JButton buttonObject;
-	private JButton buttonGiveUp;
-	private JButton buttonPrevious;
 	
 	private JProgressBar healthBarPlayer;
 	private JProgressBar healthBarOpponent;
@@ -73,7 +71,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 			}
 		});
 		*/
-		setBackground(Color.DARK_GRAY);
+		//setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		
 		int windowWidth = GRPGParameters.WINDOW_WIDTH;
@@ -89,7 +87,6 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 * 
 	 */
 	public void checkEndFight() {
-		
 		if ( ((Boolean)VariableRepository.getInstance().searchByName("characterInFight")) == false ) {
 			VariableRepository.getInstance().removeByName("enemy_1");
 			JPanel parent = (JPanel)getParent();
@@ -104,18 +101,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 	protected void initActions() {
 		buttonAttack.addActionListener(new AttackAction());
 		buttonDefense.addActionListener(new DefenseAction());
-		buttonObject.addActionListener(new ObjectAction());
-		buttonGiveUp.addActionListener(new GiveUpAction());
-		// buttonPrevious.addActionListener(new PreviousAction());
 	}
-	
-	/*
-	private class PreviousAction implements ActionListener{	
-		public void actionPerformed(ActionEvent e) {
-			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
-		}
-	}
-	*/
 	
 	
 	/**
@@ -178,27 +164,6 @@ public class GUIFight extends JPanel implements ComponentListener {
 	/**
 	 * 
 	 */
-	private class ObjectAction implements ActionListener{	
-		public void actionPerformed(ActionEvent e) {
-
-		}
-	}
-	
-	
-	/**
-	 * 
-	 */
-	private class GiveUpAction implements ActionListener{	
-		public void actionPerformed(ActionEvent e) {
-			//revenir sur l'écran de deplacement(map)
-			//requete bd pour defaite +1
-		}
-	}
-	
-	
-	/**
-	 * 
-	 */
 	public void componentShown(ComponentEvent e) {
         // displayMessage(e.getComponent().getClass().getName() + " --- Shown");
 		System.out.println("testComponentShown");
@@ -230,31 +195,19 @@ public class GUIFight extends JPanel implements ComponentListener {
 		labelHealthBarOpponent.setComponentOrientation(getComponentOrientation());
 		add(labelHealthBarOpponent);
 		labelHealthBarOpponent.setLabelFor(healthBarOpponent);
-		labelConnexionTitle = new JLabel("fight");
+		labelConnexionTitle = new JLabel("You are fighting an enemy.");
 		labelConnexionTitle.setFont(new Font("Tahoma", Font.PLAIN, 38));
-		labelConnexionTitle.setBounds(400, 22, 335, 76);
+		labelConnexionTitle.setBounds(268, 22, 558, 76);
 		add(labelConnexionTitle);
 	
 
 		buttonAttack = new JButton("Attack");
-		buttonAttack.setBounds(400, 300, 114, 35);
+		buttonAttack.setBounds(438, 240, 114, 35);
 		add(buttonAttack);
 		
 		buttonDefense = new JButton("Defense");
-		buttonDefense.setBounds(514, 300, 114, 35);
+		buttonDefense.setBounds(438, 308, 114, 35);
 		add(buttonDefense);
-		
-		buttonObject = new JButton("Object");
-		buttonObject.setBounds(400, 335, 114, 35);
-		add(buttonObject);
-		
-		buttonGiveUp = new JButton("Give Up");
-		buttonGiveUp.setBounds(514, 335, 114, 35);
-		add(buttonGiveUp);
-		
-		buttonPrevious = new JButton("Previous");
-		buttonPrevious.setBounds(514, 522, 114, 35);
-		add(buttonPrevious);
 		
 		healthBarPlayer = new JProgressBar(SwingConstants.VERTICAL);
 		healthBarPlayer.setForeground(new Color(0, 153, 255));
@@ -280,11 +233,11 @@ public class GUIFight extends JPanel implements ComponentListener {
 	/**
 	 * 
 	 */
-	public void paint(Graphics g) {
+	/*public void paint(Graphics g) {
         super.paint(g);       
         Graphics2D g2 = (Graphics2D) g;
         Painter.drawBattleBackground(g2);
-    }
+    }*/
 	
 	/**
 	 * 

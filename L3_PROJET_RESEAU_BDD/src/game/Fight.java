@@ -1,6 +1,7 @@
 package game;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JTextArea;
 
@@ -62,8 +63,8 @@ public class Fight {
 		FightAbilities playerAbilities = new FightAbilities(4, 2);	//A RECUP
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		*/
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "D�but du combat !");
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Veuillez choisir si vous souhaitez attaquer l'ennemi (a) ou vous d�fendre pendant le tour ennemi (d).");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Let's fight !");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Choose if you want to attack the enemy or defense your-selft.");
 	}
 	
 	/**
@@ -85,11 +86,11 @@ public class Fight {
 			int random = (int) (Math.random()*100);
 			if(random<50) {
 				enemyIsDefending = true;
-				GUIDisplayHandler.displayAppendOnTextArea(textArea, "L'ennemi s'est d�fendu !");
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "The enemy defends his-self!");
 			}
 			else {
 				enemyIsDefending = false;
-				GUIDisplayHandler.displayAppendOnTextArea(textArea, "L'ennemi attaque !");
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "The enemy attack you!");
 			}	
 			
 			// Si ennemi defend & joueur attaque => degats = attaque - defense
@@ -98,8 +99,10 @@ public class Fight {
 			// Si ennemi attaque & joueur defend => degats = attaque - defense
 			 
 			if(parameter.equals("a")) {
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "You attacked the enemy.");
+				
 				if(enemyIsDefending) {
-				int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
+					int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
 					if(damage>0) {
 						enemyHealth -= damage;
 						// this.enemy.setHealth(enemyHealth);
@@ -119,6 +122,8 @@ public class Fight {
 				}
 			}
 			else if(parameter.contains("d")) {
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "You defend your-self.");
+				
 				if(!enemyIsDefending) {
 					int damage = enemyAbilities.getAttack()-playerAbilities.getDefense();
 					if(damage>0) {
@@ -127,23 +132,17 @@ public class Fight {
 					}
 				}
 			}
-			else {
-				System.out.println("Erreur, a ou d attendus !");
-			}
-				
-			System.out.println("playerHealth = " + playerHealth + " enemyHealth = " + enemyHealth);
 			
 			if ( enemyHealth <= 0 || playerHealth <= 0 ) {
 				// VariableRepository.getInstance().modify("characterInFight", false);
 				// VariableRepository.getInstance().searchByName("characterInFight")
 				
-				VariableRepository.getInstance().register("characterInFight", false);
-				
 				// VariableRepository.getInstance().removeByName("enemy_1");
-				System.out.println("Combat termin� !");
-				if(enemyHealth>=0) {
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Fight is over !");
+				System.out.println("Fight is over !");
+				if(playerHealth>=0) {
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
-					System.out.println("F�licitation, vous avez gagn�.");
+					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Congratulations, you won.");
 					
 /****************requete****************************/
 					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
@@ -152,9 +151,10 @@ public class Fight {
 					GUIDisplayHandler.displayAppendOnTextArea(textArea,resultQuery.toString());
 					Thread.sleep(3000);*/
 					//afficher info loot sur panel
+					VariableRepository.getInstance().register("characterInFight", false);
 				}
 				else {
-					System.out.println("Dommage, vous avez perdu.");
+					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Badly, you loose.");
 					
 /****************requete****************************/
 					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
@@ -163,10 +163,14 @@ public class Fight {
 					Thread.sleep(3000);*/
 					//resultQuery vaudra null, afficher message sur panel au joueur
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
-				} 
-				//VariableRepository.getInstance().register("characterInFight", false);
-
+					VariableRepository.getInstance().register("characterInFight", false);
+				}
+				
 			}
+			else {
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Your health: " + playerHealth + ". Enemy health: " + enemyHealth);
+			}
+			
 		}
 	}
 	

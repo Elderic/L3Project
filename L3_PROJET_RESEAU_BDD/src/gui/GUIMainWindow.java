@@ -111,13 +111,13 @@ public class GUIMainWindow extends JFrame {
 		JMenu mnNewMenu = new JMenu("Menu");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmQuitter = new JMenuItem("Quitter");
+		JMenuItem mntmQuitter = new JMenuItem("Quit");
 		mnNewMenu.add(mntmQuitter);
 		
-		JMenu mnMultijoueurs = new JMenu("Multi-joueurs");
+		JMenu mnMultijoueurs = new JMenu("Multi-player");
 		menuBar.add(mnMultijoueurs);
 		
-		JMenuItem mntmCombatreUnAutre = new JMenuItem("Combatre un autre joueur");
+		JMenuItem mntmCombatreUnAutre = new JMenuItem("Fight another player");
 		mnMultijoueurs.add(mntmCombatreUnAutre);
 		
 		// getContentPane().setLayout(null);
