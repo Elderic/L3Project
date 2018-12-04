@@ -37,7 +37,8 @@ public class Movements {
 		// PlayersCharacter player = new PlayersCharacter("Marcross", 20, 3, 2, 0,"male",null,null);
 		PlayersStuff playersStuff = new PlayersStuff();
 		PlayersStatistics playersStatistics = new PlayersStatistics(0,0,0);
-		PlayersCharacter player = (PlayersCharacter) VariableFactory.getInstance().createVariable("PlayersCharacter", "Marcross", 20, 3, 2);
+		// PlayersCharacter player = (PlayersCharacter) VariableFactory.getInstance().createVariable("PlayersCharacter", "Marcross", 20, 3, 2);
+		PlayersCharacter player = (PlayersCharacter) VariableFactory.createVariable("PlayersCharacter", "Marcross", 20, 3, 2);
 		VariableRepository.getInstance().register("player1", player);
 		((PlayersCharacter) VariableRepository.getInstance().searchByName("player1")).setStuff(playersStuff);
 		((PlayersCharacter) VariableRepository.getInstance().searchByName("player1")).setStats(playersStatistics);

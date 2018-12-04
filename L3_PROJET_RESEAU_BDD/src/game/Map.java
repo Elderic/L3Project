@@ -7,7 +7,7 @@ package game;
 public class Map {
 	private int height; // |
 	private int width; // --
-	private char[][] map;
+	private static char[][] map;
 	private char defaultCharInMap = '-';
 	private char borderCharInMap = '&';
 	
@@ -222,5 +222,9 @@ public class Map {
 	@Override
 	public String toString() {
 		return "Map [height=" + height + ", width=" + width + "]";
+	}
+	
+	public static void modifyCell(int i, int j, char charParameter) {
+		map[i][j] = charParameter;
 	}
 }

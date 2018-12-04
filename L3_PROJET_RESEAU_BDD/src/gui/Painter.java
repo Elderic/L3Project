@@ -128,12 +128,15 @@ public class Painter extends JPanel {
 						g.drawRect(xOffset,yOffset,GTParameters.SCALE,GTParameters.SCALE);
 						*/
 						g.drawImage(imageSolClassic, xOffset, yOffset, null);
-						int randomBush = (int) (Math.floor(Math.random() * 2) + 1);  
+						// int randomBush = (int) (Math.floor(Math.random() * 2) + 1);  
+						g.drawImage(imageBuissonClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
+						/*
 						if (randomBush == 1) {
 							g.drawImage(imageBuissonClassic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						} else {
 							g.drawImage(imageBuisson2Classic, xOffset, yOffset,GRPGParameters.SCALE,GRPGParameters.SCALE, null);
 						}
+						*/
 						break;
 					case '/':
 						/*

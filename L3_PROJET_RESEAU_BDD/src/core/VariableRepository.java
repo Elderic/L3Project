@@ -68,4 +68,13 @@ public class VariableRepository {
 	public void removeByName(String name) {
 		variables.remove(name);
 	}
+	
+	public void printHashMap() {
+		for (String name: variables.keySet()){
+
+            String key =name.toString();
+            String value = variables.get(name).toString();  
+            System.out.println(key + " " + value);  
+		}	 
+	}
 }

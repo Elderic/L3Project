@@ -115,8 +115,10 @@ public class GUIGame extends JPanel {
 		int obstaclePercentage = 20;
 		int playerXCords = 12;
 		int playerYCords = 9;
-	
+		
+		
 		movement = new Movements(height, width, monsterPercentage, obstaclePercentage,playerXCords,playerYCords);
+		VariableRepository.getInstance().register("Movement", movement);
 		graphicPainter = new Painter(movement);
 		
 	}

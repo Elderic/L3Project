@@ -1,9 +1,13 @@
 package game;
 
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 
 import query.FightQuery;
 
@@ -15,26 +19,39 @@ import gui.GUIDisplayHandler;
  * @author GILLES Anne-Sophie
  *
  */
-public class Fight {
+public class Fight implements ActionListener {
 	private EnemyCharacter enemy;
 	private PlayersCharacter player;
-	boolean enemyIsDefending;
-	FightAbilities playerAbilities;	//A RECUP
-	FightAbilities enemyAbilities;	//A RECUP
-	int playerHealth;
-	int enemyHealth;
-	
-	
+	private boolean enemyIsDefending;
+	private FightAbilities playerAbilities;	//A RECUP 
+	private FightAbilities enemyAbilities;	//A RECUP
+	private int playerHealth;
+	private int enemyHealth;
+	// private JTextArea textAreaAttribute;
+	private boolean fightVictory;
+	int iFightCell;
+	int jFightCell;
+	int counter;
+	int delay;
+	Timer timer;
 	/**
 	 * Create a Fight
 	 */
 	public Fight () {
+		counter = 3;
+		delay = 1000;
+		// Sauvegarder les cases de la cellule
+		iFightCell = ((Movements) VariableRepository.getInstance().searchByName("Movement")).getCurrentPlayerPositionX();
+		jFightCell = ((Movements) VariableRepository.getInstance().searchByName("Movement")).getCurrentPlayerPositionY();
+		
 		// Se garder la possibilit� de cr�er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
-		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.getInstance().createVariable("EnemyCharacter", "Cr�ature du Malin", 20, 3, 2);
+		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
 		VariableRepository.getInstance().register("enemy_1", enemyMonster);
 				
 		this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 		this.player = (PlayersCharacter) VariableRepository.getInstance().searchByName("player1");
+		
+		this.fightVictory = false;
 		
 		enemyIsDefending = false;
 		playerAbilities = new FightAbilities(player.getAttack(), player.getDefense());
@@ -64,7 +81,7 @@ public class Fight {
 		FightAbilities enemyAbilities = new FightAbilities(3, 5);	//A RECUP
 		*/
 		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Let's fight !");
-		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Choose if you want to attack the enemy or defense your-selft.");
+		GUIDisplayHandler.displayAppendOnTextArea(textArea, "Choose if you want to attack the enemy or defense yourself.");
 	}
 	
 	/**
@@ -82,7 +99,7 @@ public class Fight {
 			int random = (int) (Math.random()*100);
 			if(random<50) {
 				enemyIsDefending = true;
-				GUIDisplayHandler.displayAppendOnTextArea(textArea, "The enemy defends his-self!");
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "The enemy defends himself!");
 			}
 			else {
 				enemyIsDefending = false;
@@ -96,7 +113,6 @@ public class Fight {
 					int damage = playerAbilities.getAttack()-enemyAbilities.getDefense();
 					if(damage>0) {
 						enemyHealth -= damage;
-						// this.enemy.setHealth(enemyHealth);
 					}
 				}
 				else {
@@ -104,16 +120,14 @@ public class Fight {
 					int damageToPlayer = enemyAbilities.getAttack();
 					if(damageToEnemy>0) {
 						enemyHealth -= damageToEnemy;
-						// this.enemy.setHealth(enemyHealth);
 					}
 					if(damageToPlayer>0) {
 						playerHealth -= damageToPlayer;
-						// this.player.setHealth(playerHealth);
 					}
 				}
 			}
 			else if(parameter.contains("d")) {
-				GUIDisplayHandler.displayAppendOnTextArea(textArea, "You defend your-self.");
+				GUIDisplayHandler.displayAppendOnTextArea(textArea, "You defend yourself.");
 				
 				if(!enemyIsDefending) {
 					int damage = enemyAbilities.getAttack()-playerAbilities.getDefense();
@@ -130,10 +144,11 @@ public class Fight {
 				
 				// VariableRepository.getInstance().removeByName("enemy_1");
 				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Fight is over !");
-				if(playerHealth>=0) {
+
+				if(playerHealth>0) {
 					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Congratulations, you won.");
-					
+					Map.modifyCell(jFightCell, iFightCell, '-');
 /****************requete****************************/
 					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 					Stuff resultQuery=FightQuery.endFightQuery("victory", 10, enemy.getRarity());					
@@ -141,9 +156,12 @@ public class Fight {
 					GUIDisplayHandler.displayAppendOnTextArea(textArea,resultQuery.toString());
 					Thread.sleep(3000);*/
 					//afficher info loot sur panel
-					VariableRepository.getInstance().register("characterInFight", false);
-				}
-				else {
+
+					timer = new Timer(delay, this);
+			        timer.setInitialDelay(0);
+			        timer.start();
+					
+				} else if ( ( playerHealth == 0 || playerHealth <= 0 ) && enemyHealth >= 0 ) {
 					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Badly, you loose.");
 					
 /****************requete****************************/
@@ -153,15 +171,20 @@ public class Fight {
 					Thread.sleep(3000);*/
 					//resultQuery vaudra null, afficher message sur panel au joueur
 					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
-					VariableRepository.getInstance().register("characterInFight", false);
+					((Movements)VariableRepository.getInstance().searchByName("Movement")).setCurentPlayerPositionX(12);
+					((Movements)VariableRepository.getInstance().searchByName("Movement")).setCurentPlayerPositionY(9);
+					timer = new Timer(delay, this);
+			        timer.setInitialDelay(0);
+			        timer.start();
+			        
 				}
 				
 			}
 			else {
 				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Your health: " + playerHealth + ". Enemy health: " + enemyHealth);
 			}
-			
 		}
+		return;
 	}
 	
 	/**
@@ -200,6 +223,17 @@ public class Fight {
 		this.player = player;
 	}
 	
+	public int getEnemyHealth() {
+		return this.enemyHealth;
+	}
+	
+	public int getPlayerHealth() {
+		return this.playerHealth;
+	}
+	
+	public Boolean getFightVictory() {
+		return this.fightVictory;
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -208,4 +242,24 @@ public class Fight {
 	public String toString() {
 		return "Fight [enemy=" + enemy + ", player=" + player + "]";
 	}
+
+	@Override
+    public void actionPerformed(ActionEvent event)
+    {
+        if(counter == 0)
+        {
+            timer.stop();
+            System.out.println("The time is up!");
+            VariableRepository.getInstance().register("characterInFight", false);
+            
+            // Was forced to switch to the previous JPanel from here. Dunno why, but the switching doesn't work after using the swing timer.
+            CardLayout layout = (CardLayout) ((JPanel)VariableRepository.getInstance().searchByName("panelsContainer")).getLayout();
+            layout.previous(((JPanel)VariableRepository.getInstance().searchByName("panelsContainer")));
+        }
+        else
+        {
+            System.out.println("Wait for " + counter + " sec");
+            counter--;
+        }
+    }
 }

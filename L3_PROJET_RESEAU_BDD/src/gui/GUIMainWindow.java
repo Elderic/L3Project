@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+
+import core.VariableRepository;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -118,6 +121,7 @@ public class GUIMainWindow extends JFrame {
 		
 		getContentPane().add(panelsContainer);
 		
+		VariableRepository.getInstance().register("panelsContainer", panelsContainer);
 		// panelMap.setBorder(BorderFactory.createLineBorder(Color.black));
         // setFocusable(true);
         //this.pack();

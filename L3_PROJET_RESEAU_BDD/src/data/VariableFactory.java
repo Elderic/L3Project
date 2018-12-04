@@ -87,20 +87,13 @@ public class VariableFactory {
 	 * @return enemy or null
 	 */
 	public static Object createVariable(String type, String name, int health, int attack, int defense) {
-		/*
-		Variable variable = new Variable(name);
-		logger.info("Variable creation with name : " + name);
-		return variable;
-		*/
 		switch (type) {
 		case "PlayersCharacter":
 			PlayersCharacter player = new PlayersCharacter(name, health, attack, defense);
-			// logger.info("Character Variable creation");
 			System.out.println("Character Variable creation");
 			return player;
 		case "EnemyCharacter":
 			EnemyCharacter enemy= new EnemyCharacter(name, health, attack, defense);
-			// logger.info("Enemy Variable creation");
 			System.out.println("Enemy Variable creation");
 			return enemy;
 		default:
