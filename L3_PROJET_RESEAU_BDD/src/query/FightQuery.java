@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 
 import game.EnemyCharacter;
 import game.PlayersCharacter;
+import game.PlayersStuff;
 import game.Stuff;
 import core.VariableRepository;
 import data.VariableFactory;
@@ -54,7 +55,7 @@ public class FightQuery {
         if(chain.equals("ready to receive player id")){
 
             //outputFlux.println (GameVariableRepository.getInstance().getPlayerId()) ;
-        	outputFlux.println("player00015");
+        	outputFlux.println("player00003");
         	
             System.out.println("id sent");
             chain = inputFlux.readLine () ;   
@@ -161,7 +162,7 @@ public class FightQuery {
             System.out.println ("step1") ;
             
         	//outputFlux.println(GameVariableRepository.getInstance().getPlayerId()) ;
-            outputFlux.println("player00016");
+            outputFlux.println("player00003");
             
             chain = inputFlux.readLine () ;
             if(chain.equals("id received")){
@@ -189,6 +190,7 @@ public class FightQuery {
                     				String descriptionLoot=splitLoot[3];
                     				String attackLoot=splitLoot[4];
                     				String defenseLoot=splitLoot[5];
+                    				
                     				Stuff stuff=new Stuff();
                     				stuff.setName(nameLoot);
                     				stuff.setType(typeLoot);
@@ -196,7 +198,8 @@ public class FightQuery {
                     				stuff.setDescription(descriptionLoot);
                     				stuff.setAttack(Integer.parseInt(attackLoot));
                     				stuff.setDefense(Integer.parseInt(defenseLoot));
-                    			
+                    				lootManager(stuff);
+                    				
                     				for(int i=0;i<6;i++){
                     					System.out.println(splitLoot[i]);
                     				}
@@ -226,6 +229,33 @@ public class FightQuery {
         }
         closeConnection(outputFlux,inputFlux,socket);
 		return null;
+	}
+	public static void lootManager(Stuff stuff){
+		PlayersStuff playerStuff=new PlayersStuff();
+		if(stuff.getType().equals("helmet")){
+			playerStuff.setHelmet(stuff);
+			System.out.println("managed helmet");
+		}
+		else if(stuff.getType().equals("breastplate")){
+			playerStuff.setBreastplate(stuff);
+			System.out.println("managed breastplate");
+		}
+		else if(stuff.getType().equals("leggings")){
+			playerStuff.setLeggings(stuff);
+			System.out.println("managed leggings");
+		}
+		else if(stuff.getType().equals("shoes")){
+			playerStuff.setShoes(stuff);			
+			System.out.println("managed shoes");
+		}
+		else if(stuff.getType().equals("armbands")){
+			playerStuff.setArmbands(stuff);
+			System.out.println("managed armbands");
+		}
+		else if(stuff.getType().equals("weapon")){
+			playerStuff.setWeapon(stuff);
+			System.out.println("managed weapon");
+		}
 	}
 	
 	/**
