@@ -1,22 +1,16 @@
 package data;
 
-//import java.util.logging.Logger;
-
-//import org.apache.log4j.Logger;
-
 import game.*;
 
 /**
- * @author 
+ * @author Amaury SIHARATH
  *
  */
 public class VariableFactory {
 	private static VariableFactory instance = new VariableFactory();
-	//private static Logger logger = LoggerUtility.getLogger(VariableFactory.class);
-	
 	
 	/**
-	 * 
+	 * This class is used as a Singleton. So the class is instantiaded only once in the entire program. This class is used to create every Variable useful for the game.
 	 */
 	private VariableFactory() {
 
@@ -24,7 +18,7 @@ public class VariableFactory {
 
 	
 	/**
-	 * 
+	 * Return the only instance of this class.
 	 * 
 	 * @return instance
 	 */
@@ -32,33 +26,14 @@ public class VariableFactory {
 		return instance;
 	}
 	
-	
-	/*
-	public static Constant createConstant(int value) {
-		Constant constant = new Constant(value);
-		logger.info("Constant creation with value : " + value);
-		return constant;
-	}
-
-	*/
-	// (String name, int health, int attack, int defense, String variableName, int experience, String gender)
-	/*
-	public static PlayersCharacter createPlayersCharacter(String type, String name) {
-		PlayersCharacter player = new PlayersCharacter(name);
-		// logger.info("Character Variable creation");
-		System.out.println("Character Variable creation");
-		return player;
-	}
-	*/
-	
 	/**
+	 * Used to create the statistics of a player.
 	 * 
+	 * @param nbFight Number of fights of a player that is going to be set.
+	 * @param nbWin Number of wins of a player that is going to be set.
+	 * @param nbLose Number of loses of a player that is going to be set.
 	 * 
-	 * @param nbFight
-	 * @param nbWin
-	 * @param nbLose
-	 * 
-	 * @return playerStats
+	 * @return playerStats An object containing the stats of a player.
 	 */
 	public static Object createPlayersStatistics(int nbFight, int nbWin, int nbLose) {
 		PlayersStatistics playersStats = new PlayersStatistics(nbFight, nbWin, nbLose);
@@ -66,9 +41,9 @@ public class VariableFactory {
 	}
 	
 	/**
+	 * Used to instantiate the stuff of a player.
 	 * 
-	 * 
-	 * @return playerStuff
+	 * @return playerStuff An object containing the stuff of a player.
 	 */
 	public static Object createPlayersStuff() {
 		PlayersStuff playersStuff = new PlayersStuff();
@@ -76,15 +51,15 @@ public class VariableFactory {
 	}
 	
 	/**
+	 * Used to create a player-class or an enemy-class object.
 	 * 
+	 * @param type A string, which indicates the type of variable we want to create. Parameters should be "PlayersCharacter" or "EnemyCharacter".
+	 * @param name Name of the character or the monster
+	 * @param health Amount of Health of the character or the monster
+	 * @param attack Attack capacity of the character or the monster
+	 * @param defense Defence capacity of the character or the monster
 	 * 
-	 * @param type
-	 * @param name
-	 * @param health
-	 * @param attack
-	 * @param defense
-	 * 
-	 * @return enemy or null
+	 * @return An enemy, a playerCharacter or null
 	 */
 	public static Object createVariable(String type, String name, int health, int attack, int defense) {
 		switch (type) {

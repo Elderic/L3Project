@@ -34,9 +34,9 @@ public class Painter extends JPanel {
 	
 	
 	/**
+	 * The constructor initialize all the images necessary to draw all cells on the map of the game.
 	 * 
-	 * 
-	 * @param movement
+	 * @param movement Needed to get access to the map contained in the Movements Instance.
 	 * 
 	 * @throws IOException
 	 */
@@ -74,7 +74,7 @@ public class Painter extends JPanel {
 	
 	
 	/**
-	 * 
+	 * This method is called when we need to draw the background of the Panel during a fight.
 	 * 
 	 * @param g
 	 */
@@ -83,9 +83,9 @@ public class Painter extends JPanel {
 	}
 	
 	/**
+	 * When this method is called, the map is iterated so as to draw every cell present in the array, according to its content.
 	 * 
-	 * 
-	 * @param g
+	 * @param g Needed so we can draw in the right context.
 	 */
 	public void drawMap(Graphics2D g) {
     	for (int j = 0; j < this.movementHandler.getMap().getHeight(); j++) {
@@ -157,9 +157,9 @@ public class Painter extends JPanel {
     }
 	
 	/**
+	 * A function that is useful to see the actual size of each cells.
 	 * 
-	 * 
-	 * @param g
+	 * @param g Needed to draw on the right context.
 	 * @param mapWidth
 	 * @param mapHeight
 	 * @param component
@@ -179,9 +179,9 @@ public class Painter extends JPanel {
 	}
 	
 	/**
+	 * This function is currently drawing a blue square in place the player's character.
 	 * 
-	 * 
-	 * @param g
+	 * @param g Needed to draw in the right context
 	 */
 	public void drawPlayer(Graphics g) {
     	/*
