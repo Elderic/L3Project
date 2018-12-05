@@ -84,7 +84,7 @@ public class Movements {
 			// System.out.println("Valeur de characterInFight apr�s modification dans le VariableRepository " + VariableRepository.getInstance().searchByName("characterInFight"));
 
 /****************requete*****************/			
-			//boolean resultQuery=FightQuery.FightQuery();
+			boolean resultQuery=FightQuery.FightQuery();
 			
 			return;
 			//LET'S FIGHT

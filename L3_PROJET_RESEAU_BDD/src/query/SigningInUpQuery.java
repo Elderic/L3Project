@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import core.GameVariableRepository;
+
 /**
  * @author TOULAIN Timothe
  *
@@ -62,6 +64,7 @@ public class SigningInUpQuery {
                 System.out.println(chain);   
                 GameVariableRepository.getInstance().setPlayerId(chain);
                 closeConnection(outputFlux,inputFlux,socket);
+                GameVariableRepository.getInstance().setIsConnected(true);
                 return true;
             }
             else{
@@ -151,6 +154,7 @@ public class SigningInUpQuery {
         if(chain.equals("creation completed")){
         	System.out.println("creation completed");
         	closeConnection(outputFlux,inputFlux,socket);
+            GameVariableRepository.getInstance().setIsConnected(true);
             return true;
         }
         else{

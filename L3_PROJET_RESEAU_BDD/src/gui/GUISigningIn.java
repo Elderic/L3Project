@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.*;
+
+import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +12,6 @@ import java.io.IOException;
 
 import query.FightQuery;
 import query.SigningInUpQuery;
-import core.GameVariableRepository;
 
 /**
  * @author 
@@ -38,7 +39,6 @@ public class GUISigningIn extends JPanel {
 	 * Create the panel.
 	 */
 	public GUISigningIn() {
-		setBackground(Color.LIGHT_GRAY.darker());
 		setLayout(null);
 		
 		int windowWidth = GRPGParameters.WINDOW_WIDTH;
@@ -71,16 +71,12 @@ public class GUISigningIn extends JPanel {
 				try {
 					status=SigningInUpQuery.signingInUpQuery("signingIn",loginField.getText(),password);
 					if(status){
-						try {
-							fightQuery=FightQuery.FightQuery();
-							System.out.println("query ="+fightQuery);
-							System.out.println(GameVariableRepository.getInstance().getPlayerName());
-						} catch (IOException | InterruptedException e1) {
-							e1.printStackTrace();
-						}		
-						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
-						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
-						PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+								
+						JPanel parent = (JPanel)getParent();
+			        	CardLayout layout = (CardLayout) parent.getLayout();
+			        	layout.next(parent);
+			        	layout.next(parent);
+			        	layout.next(parent);
 						System.out.println("acces a l'ecran suivant");
 					}
 					else{ //connexion impossible
@@ -106,8 +102,12 @@ public class GUISigningIn extends JPanel {
 	 */
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
-			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
-		}
+			JPanel parent = (JPanel)getParent();
+        	CardLayout layout = (CardLayout) parent.getLayout();
+        	layout.next(parent);
+        	layout.next(parent);
+
+        }
 	}
 	
 	

@@ -11,6 +11,7 @@ import game.EnemyCharacter;
 import game.PlayersCharacter;
 import game.PlayersStuff;
 import game.Stuff;
+import core.GameVariableRepository;
 import core.VariableRepository;
 import data.VariableFactory;
 
@@ -32,6 +33,7 @@ public class FightQuery {
 	 * @throws InterruptedException
 	 */
 	public static boolean FightQuery() throws IOException, InterruptedException {
+		
 		Socket socket = null ;
 		PrintWriter outputFlux = null ;
 		BufferedReader inputFlux = null ;
@@ -54,8 +56,8 @@ public class FightQuery {
         System.out.println ("Server says: " + chain) ;
         if(chain.equals("ready to receive player id")){
 
-            //outputFlux.println (GameVariableRepository.getInstance().getPlayerId()) ;
-        	outputFlux.println("player00003");
+            outputFlux.println (GameVariableRepository.getInstance().getPlayerId()) ;
+        	//outputFlux.println("player00001");
         	
             System.out.println("id sent");
             chain = inputFlux.readLine () ;   
@@ -159,10 +161,11 @@ public class FightQuery {
         chain = inputFlux.readLine () ;
         System.out.println ("Server says: " + chain) ;
         if(chain.equals("ready to update data")){
-            System.out.println ("step1") ;
-            
-        	//outputFlux.println(GameVariableRepository.getInstance().getPlayerId()) ;
-            outputFlux.println("player00003");
+            System.out.println ("step1");
+            System.out.println(GameVariableRepository.getInstance().getPlayerId());
+           // GameVariableRepository.getInstance().setPlayerId("player00007");
+        	outputFlux.println(GameVariableRepository.getInstance().getPlayerId()) ;
+            //outputFlux.println("player00001");
             
             chain = inputFlux.readLine () ;
             if(chain.equals("id received")){

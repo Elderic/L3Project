@@ -23,11 +23,10 @@ public class Fight implements ActionListener {
 	private EnemyCharacter enemy;
 	private PlayersCharacter player;
 	private boolean enemyIsDefending;
-	private FightAbilities playerAbilities;	//A RECUP 
-	private FightAbilities enemyAbilities;	//A RECUP
+	private FightAbilities playerAbilities;	
+	private FightAbilities enemyAbilities;	
 	private int playerHealth;
 	private int enemyHealth;
-	// private JTextArea textAreaAttribute;
 	private boolean fightVictory;
 	int iFightCell;
 	int jFightCell;
@@ -45,8 +44,8 @@ public class Fight implements ActionListener {
 		jFightCell = ((Movements) VariableRepository.getInstance().searchByName("Movement")).getCurrentPlayerPositionY();
 		
 		// Se garder la possibilit� de cr�er une collection de monstre si on veut mettre plsuieurs adversaires contre le joueur
-		EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
-		VariableRepository.getInstance().register("enemy_1", enemyMonster);
+		//EnemyCharacter enemyMonster = (EnemyCharacter) VariableFactory.createVariable("EnemyCharacter", "Créature du Malin", 20, 3, 2);
+		//VariableRepository.getInstance().register("enemy_1", enemyMonster);
 				
 		this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 		this.player = (PlayersCharacter) VariableRepository.getInstance().searchByName("player1");
@@ -146,31 +145,26 @@ public class Fight implements ActionListener {
 				GUIDisplayHandler.displayAppendOnTextArea(textArea, "Fight is over !");
 
 				if(playerHealth>0) {
-					//AJOUTER VICTOIRE + GENERER LOOT pour chaque loot > proposer au joueur de le porter ou non (remplace son stuff actuel)
 					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Congratulations, you won.");
 					Map.modifyCell(jFightCell, iFightCell, '-');
 /****************requete****************************/
-					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
+					this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 					Stuff resultQuery=FightQuery.endFightQuery("victory", 10, enemy.getRarity());					
 					System.out.println(resultQuery.toString());
 					GUIDisplayHandler.displayAppendOnTextArea(textArea,resultQuery.toString());
-					Thread.sleep(3000);*/
-					//afficher info loot sur panel
 
-					timer = new Timer(delay, this);
+					timer = new Timer(2000, this);
 			        timer.setInitialDelay(0);
 			        timer.start();
 					
 				} else if ( ( playerHealth == 0 || playerHealth <= 0 ) && enemyHealth >= 0 ) {
-					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Badly, you loose.");
+					GUIDisplayHandler.displayAppendOnTextArea(textArea, "Too bad, you lose.");
 					
 /****************requete****************************/
-					/*this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
+					this.enemy = (EnemyCharacter) VariableRepository.getInstance().searchByName("enemy_1");
 					Stuff resultQuery=FightQuery.endFightQuery("defeat", 5, enemy.getRarity());
 					GUIDisplayHandler.displayAppendOnTextArea(textArea,"perdu");
-					Thread.sleep(3000);*/
-					//resultQuery vaudra null, afficher message sur panel au joueur
-					//REPLACER LE JOUEUR AU DEBUT DU JEU + MALUS ?
+				
 					((Movements)VariableRepository.getInstance().searchByName("Movement")).setCurentPlayerPositionX(12);
 					((Movements)VariableRepository.getInstance().searchByName("Movement")).setCurentPlayerPositionY(9);
 					timer = new Timer(delay, this);

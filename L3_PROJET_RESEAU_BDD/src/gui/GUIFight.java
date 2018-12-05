@@ -49,6 +49,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 * Create the panel.
 	 */
 	public GUIFight() {
+
 		this.addComponentListener((ComponentListener) this);
 		/*
 		addComponentListener(new ComponentAdapter() {
@@ -117,14 +118,14 @@ public class GUIFight extends JPanel implements ComponentListener {
 			
 			GUIDisplayHandler.updateLabel(labelHealthBarPlayer, ( String.valueOf( ((PlayersCharacter)VariableRepository.getInstance().searchByName("player1")).getHealth() ) ) );
 			GUIDisplayHandler.updateLabel(labelHealthBarPlayer, ( String.valueOf( ((EnemyCharacter)VariableRepository.getInstance().searchByName("enemy_1")).getHealth() ) ) );
-			*/
+			
 			
 			GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth() );
 			GUIDisplayHandler.updateProgressBarValue(healthBarOpponent, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getEnemyHealth() );
 			
 			GUIDisplayHandler.updateLabel(labelHealthBarPlayer, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth()) );
 			GUIDisplayHandler.updateLabel(labelHealthBarOpponent, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getEnemyHealth()) );
-			
+			*/
 			checkEndFight();
 			/*
 			try {
@@ -173,11 +174,11 @@ public class GUIFight extends JPanel implements ComponentListener {
 		VariableRepository.getInstance().register("fightManager", fight);
 		fight.initFight(textArea);
 		
-		GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth() );
-		GUIDisplayHandler.updateProgressBarValue(healthBarOpponent, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getEnemyHealth() );
+		//GUIDisplayHandler.updateProgressBarValue(healthBarPlayer, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth() );
+		//GUIDisplayHandler.updateProgressBarValue(healthBarOpponent, ((Fight) VariableRepository.getInstance().searchByName("fightManager")).getEnemyHealth() );
 		
-		GUIDisplayHandler.updateLabel(labelHealthBarPlayer, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth()) );
-		GUIDisplayHandler.updateLabel(labelHealthBarOpponent, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth()) );
+		//GUIDisplayHandler.updateLabel(labelHealthBarPlayer, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth()) );
+		//GUIDisplayHandler.updateLabel(labelHealthBarOpponent, String.valueOf(((Fight) VariableRepository.getInstance().searchByName("fightManager")).getPlayerHealth()) );
     }
 	
 	/**
@@ -185,7 +186,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 	 */
 	public void initLayout () {
 		
-		labelHealthBarOpponent = new JLabel("0");
+		/*labelHealthBarOpponent = new JLabel("0");
 		labelHealthBarOpponent.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		labelHealthBarOpponent.setBounds(962, 375, 39, 28);
 		labelHealthBarOpponent.setComponentOrientation(getComponentOrientation());
@@ -197,7 +198,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 		labelHealthBarPlayer.setBounds(23, 375, 39, 28);
 		labelHealthBarPlayer.setComponentOrientation(getComponentOrientation());
 		add(labelHealthBarPlayer);
-		labelHealthBarPlayer.setLabelFor(healthBarPlayer);
+		labelHealthBarPlayer.setLabelFor(healthBarPlayer);*/
 		
 		labelConnexionTitle = new JLabel("You are fighting an enemy.");
 		labelConnexionTitle.setFont(new Font("Tahoma", Font.PLAIN, 38));
@@ -213,7 +214,7 @@ public class GUIFight extends JPanel implements ComponentListener {
 		buttonDefense.setBounds(438, 308, 114, 35);
 		add(buttonDefense);
 		
-		healthBarPlayer = new JProgressBar(SwingConstants.VERTICAL);
+		/*healthBarPlayer = new JProgressBar(SwingConstants.VERTICAL);
 		healthBarPlayer.setForeground(new Color(0, 153, 255));
 		healthBarPlayer.setBackground(Color.LIGHT_GRAY);
 		healthBarPlayer.setBounds(23, 375, 36, 200);
@@ -223,10 +224,10 @@ public class GUIFight extends JPanel implements ComponentListener {
 		healthBarOpponent.setForeground(new Color(0, 153, 255));
 		healthBarOpponent.setBackground(Color.LIGHT_GRAY);
 		healthBarOpponent.setBounds(962, 375, 36, 200);
-		add(healthBarOpponent);
+		add(healthBarOpponent);*/
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 604, 975, 154);
+		scrollPane.setBounds(23, 404, 975, 154);
 		add(scrollPane);
 		
 		textArea = new JTextArea();

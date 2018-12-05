@@ -59,7 +59,7 @@ public class GUIDisplayHandler {
 	 * @param valueToDisplay
 	 */
 	public static void updateProgressBarValue(JProgressBar healthBar, int valueToDisplay) {
-		healthBar.setValue(valueToDisplay);
+		//healthBar.setValue(valueToDisplay);
 	}
 	
 	/**
@@ -69,6 +69,6 @@ public class GUIDisplayHandler {
 	 * @param toDisplay
 	 */
 	public static void updateLabel(JLabel labelToUpdate, String toDisplay) {
-		labelToUpdate.setText(toDisplay);
+		//labelToUpdate.setText(toDisplay);
 	}
 }

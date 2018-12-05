@@ -1,5 +1,7 @@
 package gui;
 
+
+
 import javax.swing.*;
 
 import core.VariableRepository;
@@ -29,7 +31,8 @@ public class GUIMainWindow extends JFrame {
 	private JPanel signUpPanel;
 
 	private GUIGame gamePanel;
-	private JButton startButton;
+	private JButton signIn;
+	private JButton signUp;
 	private CardLayout cardLayout;
 	
 	
@@ -53,11 +56,19 @@ public class GUIMainWindow extends JFrame {
 	 * 
 	 */
 	public void initActions () {
-		startButton.addActionListener(new ActionListener() {
+		
+		signIn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				cardLayout.next(panelsContainer);
+				cardLayout.previous(panelsContainer);
+				cardLayout.previous(panelsContainer);
 			}
 		});
+		signUp.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.previous(panelsContainer);
+			}
+		});
+
 	}
 	
 	/**
@@ -66,10 +77,6 @@ public class GUIMainWindow extends JFrame {
 	public GUIMainWindow() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		// panelsContainer = new JPanel();
-		// panelsContainer.setBorder(new EmptyBorder(5, 5, 5, 5));
-		// panelsContainer.setLayout(new BorderLayout(0, 0));
-		// setContentPane(panelsContainer);
 		
 		setSize(new Dimension(1050, 900));
 		setResizable(false);
@@ -79,11 +86,10 @@ public class GUIMainWindow extends JFrame {
 		startingPanel = new JPanel();
 		gamePanel = new GUIGame();
 		fightPanel = new GUIFight();
-		//characterCreationPanel = new GUICharacterCreation();
-		//signInPanel = new GUISigningIn();
-		//signUpPanel = new GUISigningUp();
+		characterCreationPanel = new GUICharacterCreation();
+		signInPanel = new GUISigningIn();
+		signUpPanel = new GUISigningUp();
 
-		// startingPanel.addKeyListener(new GUIGame());
 		startingPanel.setFocusable(true);
         
 		// Create cardLayout
@@ -91,50 +97,38 @@ public class GUIMainWindow extends JFrame {
 		
 		//Create the panel that contains the "cards".
 		panelsContainer = new JPanel(cardLayout);
+				
 		
-		startButton = new JButton("START");
-	
-		startingPanel.add(startButton);
+		
+		signIn = new JButton("SIGN IN");
+		startingPanel.add(signIn);
+		
+		signUp = new JButton("SIGN UP");
+		startingPanel.add(signUp);
 		
 		panelsContainer.add(startingPanel, STARTINGPANEL);
 		panelsContainer.add(gamePanel, GAMEPANEL);
 		panelsContainer.add(fightPanel, FIGHTPANEL);
-		//panelsContainer.add(characterCreationPanel, CHARACTERCREATIONPANEL);
-		//panelsContainer.add(signInPanel, SIGNINPANEL);
-		//panelsContainer.add(signUpPanel, SIGNUPPANEL);
+		panelsContainer.add(characterCreationPanel, CHARACTERCREATIONPANEL);
+		panelsContainer.add(signInPanel, SIGNINPANEL);
+		panelsContainer.add(signUpPanel, SIGNUPPANEL);
 
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		// ((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, this)).setJMenuBar(menuBar);
 		JMenu mnNewMenu = new JMenu("Menu");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmQuitter = new JMenuItem("Quit");
 		mnNewMenu.add(mntmQuitter);
 		
-		JMenu mnMultijoueurs = new JMenu("Multi-player");
-		menuBar.add(mnMultijoueurs);
 		
-		JMenuItem mntmCombatreUnAutre = new JMenuItem("Fight another player");
-		mnMultijoueurs.add(mntmCombatreUnAutre);
 		
 		getContentPane().add(panelsContainer);
 		
 		VariableRepository.getInstance().register("panelsContainer", panelsContainer);
-		// panelMap.setBorder(BorderFactory.createLineBorder(Color.black));
-        // setFocusable(true);
-        //this.pack();
+
         initActions();
-        // this.player = new PlayersCharacter();
-        /*
-		try {
-			initGameVariables();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
-        
         
         mntmQuitter.addActionListener(new ActionListener () {
         	public void actionPerformed (ActionEvent arg0) {

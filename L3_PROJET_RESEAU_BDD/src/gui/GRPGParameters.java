@@ -13,6 +13,11 @@ public class GRPGParameters {
 	/**
 	 * Radical parameter.
 	 */
+	/*public static final int WINDOW_WIDTH = 1024;
+
+	public static final int BASIC = WINDOW_WIDTH / 1024;
+
+	public static final int WINDOW_HEIGHT = BASIC * 768;*/
 	public static final int WINDOW_WIDTH = 1024;
 
 	public static final int BASIC = WINDOW_WIDTH / 1024;

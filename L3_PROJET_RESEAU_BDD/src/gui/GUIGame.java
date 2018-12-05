@@ -85,6 +85,7 @@ public class GUIGame extends JPanel {
 	 * 
 	 */
 	public GUIGame() {
+		
 		//listener = new CustomKeyListener();
 	      this.setFocusable(true);
 	      this.requestFocus();

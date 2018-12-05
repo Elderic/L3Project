@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.*;
+
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -45,7 +47,6 @@ public class GUISigningUp extends JPanel {
 	 * Create the panel.
 	 */
 	public GUISigningUp() {
-		setBackground(Color.LIGHT_GRAY.darker());
 		setLayout(null);
 		
 		int windowWidth = GRPGParameters.WINDOW_WIDTH;
@@ -85,10 +86,12 @@ public class GUISigningUp extends JPanel {
 						status=SigningInUpQuery.signingInUpQuery("signingUp",loginField.getText(),password1);
 						if(status){						
 							System.out.println("acces a l'ecran suivant");
-							PanelsContainer.getInstance().getCardLayout().next(PanelsContainer.getInstance());
+							JPanel parent = (JPanel)getParent();
+				        	CardLayout layout = (CardLayout) parent.getLayout();
+				        	layout.previous(parent);
+				        	layout.previous(parent);
 						}
-						else{ //connexion impossible
-				//on ne prend pas encore en compte la raison de la non inscription(login deja pris, mdp pas au bon format etc)
+						else{ 
 							subscriptionImpossibleField.setVisible(true);
 						}
 					} catch (IOException e1) {
@@ -106,8 +109,7 @@ public class GUISigningUp extends JPanel {
 			else {
 				errorPasswordField.setVisible(false);
 				errorEmptyField.setVisible(true);
-			}
-										
+			}					
 		}
 	}
 	
@@ -117,8 +119,9 @@ public class GUISigningUp extends JPanel {
 	 */
 	private class PreviousAction implements ActionListener{	
 		public void actionPerformed(ActionEvent e) {
-			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
-			PanelsContainer.getInstance().getCardLayout().previous(PanelsContainer.getInstance());
+			JPanel parent = (JPanel)getParent();
+        	CardLayout layout = (CardLayout) parent.getLayout();
+        	layout.next(parent);
 		}
 	}
 	

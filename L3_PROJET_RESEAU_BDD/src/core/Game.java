@@ -48,7 +48,7 @@ public class Game {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	// Juste une démo, ne surtout pas faire du code comme celui d'en-dessous
+	// Juste une dï¿½mo, ne surtout pas faire du code comme celui d'en-dessous
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 847, 498);
@@ -73,11 +73,11 @@ public class Game {
 		JLabel lblPanel = new JLabel("PANEL 2");
 		panel2.add(lblPanel);
 		
-		btnTest.addActionListener(new ActionListener() {
+		/*btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				((CardLayout) cardsContainer.getLayout()).next(cardsContainer);
 			}
-		});
+		});*/
 	}
 
 }
